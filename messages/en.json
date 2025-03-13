@@ -1,0 +1,14 @@
+{
+  "Default": {
+    "navbar": {
+      "home": "Home",
+      "product": "Product",
+      "aboutUs": "About Us",
+      "contact": "Contact",
+      "blog": "Blog"
+    },
+    "product": {
+      "noProducts": "No products found"
+    }
+  }
+}

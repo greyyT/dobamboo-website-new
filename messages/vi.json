@@ -1,0 +1,14 @@
+{
+  "Default": {
+    "navbar": {
+      "home": "Trang chủ",
+      "product": "Sản phẩm",
+      "aboutUs": "Về chúng tôi",
+      "contact": "Liên hệ",
+      "blog": "Blog"
+    },
+    "product": {
+      "noProducts": "Không tìm thấy sản phẩm."
+    }
+  }
+}

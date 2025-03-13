@@ -1,0 +1,7 @@
+const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID!;
+const NOTION_REVALIDATE_INTERVAL = Number(process.env.NOTION_REVALIDATE_INTERVAL!);
+
+export const Notion = Object.freeze({
+  NOTION_DATABASE_ID,
+  NOTION_REVALIDATE_INTERVAL,
+});

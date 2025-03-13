@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum Language {
+  VI
+  EN
+}
+
+enum LandingPageType {
+  CAROUSEL
+  PRODUCT_SHOWCASE
+  SHOP_DETAIL
+}
+
+enum View {
+  LANDING_PAGE
+  PRODUCT
+  CATEGORY
+}
+
+model Intl {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  locale Language
+  view   View
+  value  Json
+
+  @@index([view, locale])
+}
+
+model LandingPageView {
+  id    String          @id @default(auto()) @map("_id") @db.ObjectId
+  order Int
+  type  LandingPageType
+  data  Json
+}
+
+model Product {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  SKU        String   @unique
+  slug       String   @unique
+  images     String[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  categoryId String   @db.ObjectId
+
+  category     Category            @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  translations ProductTranslation[] @relation("ProductToTranslation") // One-to-many relation
+}
+
+model ProductTranslation {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId   String   @db.ObjectId
+  locale      Language
+  name        String
+  description String
+  dimensions  String[]
+
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade, name: "ProductToTranslation") // Back relation
+
+  @@unique([productId, locale]) // Ensures a product has only one translation per locale
+}
+
+model Category {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  slug      String     @unique
+  image     String?
+  parentId  String?    @db.ObjectId
+  parent    Category?  @relation("CategoryToCategory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  children  Category[] @relation("CategoryToCategory")
+  products  Product[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}

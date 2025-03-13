@@ -1,0 +1,56 @@
+.blog ol {
+  list-style-type: decimal;
+  counter-reset: list-item;
+  padding-left: 20px;
+}
+
+.blog ol li {
+  counter-increment: list-item;
+  padding-left: 4px;
+}
+
+.blog ul {
+  list-style-type: disc;
+  counter-reset: list-item;
+  padding-left: 20px;
+}
+
+.blog ul li {
+  counter-increment: list-item;
+  padding-left: 4px;
+}
+
+.blog a {
+  color: #5385a6;
+  text-decoration: none;
+}
+
+.blog a:hover {
+  text-decoration: underline;
+  color: #5093c0;
+  transition: color 0.1s;
+}
+
+.blog h1 {
+  font-size: 30px;
+  line-height: 39px;
+  margin-top: 32px !important;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.blog h2 {
+  font-size: 24px;
+  line-height: 31px;
+  margin-top: 24px !important;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.blog h3 {
+  font-size: 20px;
+  line-height: 26px;
+  margin-top: 16px !important;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
