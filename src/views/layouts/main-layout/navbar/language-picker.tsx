@@ -2,10 +2,11 @@
 
 import { GlobeIcon } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import { FC, useTransition } from 'react';
+import { FC } from 'react';
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import Intl from '@/constants/intl';
+import { Button } from '@/components/ui/button';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import Intl, { LOCALES } from '@/constants/intl';
 import { usePathname, useRouter } from '@/i18n/navigation';
 
 interface ILanguagePickerProps {
@@ -17,7 +18,6 @@ const LanguagePicker: FC<ILanguagePickerProps> = ({ locale }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
 
   // Handle user's change action
   const onValueChange = (value: string) => {
@@ -30,34 +30,45 @@ const LanguagePicker: FC<ILanguagePickerProps> = ({ locale }) => {
       return acc;
     }, {});
 
-    startTransition(() => {
-      router.replace(
-        {
-          pathname,
-          query: queryFromParams,
-        },
-        {
-          locale: value,
-        },
-      );
-    });
+    router.replace(
+      {
+        pathname,
+        query: queryFromParams,
+      },
+      {
+        locale: value,
+      },
+    );
+  };
+
+  const MAPPED_LOCALE: Record<Intl, string> = {
+    [Intl.EN]: 'English',
+    [Intl.VI]: 'Tiếng Việt',
   };
 
   return (
-    <div className="language-picker">
-      <Select onValueChange={onValueChange} value={locale} disabled={isPending}>
-        <SelectTrigger className="w-56 text-title">
-          <div className="flex gap-2 items-center">
-            <GlobeIcon className="opacity-60 h-5" />
-            <SelectValue placeholder="Select a language" />
-          </div>
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value={Intl.EN}>English</SelectItem>
-          <SelectItem value={Intl.VI}>Tiếng Việt</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
+    <HoverCard openDelay={100} closeDelay={150}>
+      <HoverCardTrigger>
+        <Button variant="outline" size="sm" className="items-center cursor-pointer text-title bg-main-bg">
+          <GlobeIcon size={16} className="-mr-0.5 mb-0.5" /> {MAPPED_LOCALE[locale]}
+        </Button>
+      </HoverCardTrigger>
+      <HoverCardContent className="p-2 flex flex-col w-auto items-start min-w-30">
+        {LOCALES.map(item => (
+          <Button
+            key={item}
+            variant={'ghost'}
+            className="w-full justify-start cursor-pointer"
+            onClick={() => {
+              onValueChange(item);
+            }}
+            size={'sm'}
+          >
+            {MAPPED_LOCALE[item]}
+          </Button>
+        ))}
+      </HoverCardContent>
+    </HoverCard>
   );
 };
 

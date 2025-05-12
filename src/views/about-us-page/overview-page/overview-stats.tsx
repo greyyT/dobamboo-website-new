@@ -33,18 +33,6 @@ const OverviewStats = () => {
             title="228,000+ Customers"
           />
         </div>
-        <div className="mt-16">
-          <h1 className="text-2xl font-semibold text-center">Voted #1 in 571 Reports</h1>
-          <div className="mt-12 flex-1 flex flex-col gap-8 justify-center items-center">
-            <div className="flex gap-16">
-              <img src="/images/award.png" alt="Award" className="w-20" />
-              <img src="/images/award.png" alt="Award" className="w-20" />
-              <img src="/images/award.png" alt="Award" className="w-20" />
-              <img src="/images/award.png" alt="Award" className="w-20" />
-              <img src="/images/award.png" alt="Award" className="w-20" />
-            </div>
-          </div>
-        </div>
       </Screen>
     </div>
   );

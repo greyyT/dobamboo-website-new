@@ -2,7 +2,7 @@ import { Route } from './route';
 
 interface NavbarItem {
   title: string;
-  href: string;
+  href: Route;
 }
 
 export const NAVBAR_ITEMS: NavbarItem[] = [
@@ -12,18 +12,18 @@ export const NAVBAR_ITEMS: NavbarItem[] = [
   },
   {
     title: 'product',
-    href: '/product',
+    href: Route.PRODUCT,
   },
   {
     title: 'aboutUs',
-    href: '/about-us',
+    href: Route.ABOUT_US,
   },
   {
     title: 'contact',
-    href: '/contact',
+    href: Route.CONTACT,
   },
   {
     title: 'blog',
-    href: '/blog',
+    href: Route.BLOG,
   },
 ];

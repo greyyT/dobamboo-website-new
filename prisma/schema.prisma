@@ -20,8 +20,10 @@ enum Language {
 
 enum LandingPageType {
   CAROUSEL
+  NAVIGATION
   PRODUCT_SHOWCASE
   SHOP_DETAIL
+  BROWSE_CATEGORY
 }
 
 enum View {
@@ -34,9 +36,11 @@ model Intl {
   id     String   @id @default(auto()) @map("_id") @db.ObjectId
   locale Language
   view   View
+  key    String
   value  Json
 
   @@index([view, locale])
+  @@index([key])
 }
 
 model LandingPageView {
@@ -54,8 +58,9 @@ model Product {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   categoryId String   @db.ObjectId
+  isFeatured Boolean  @default(false)
 
-  category     Category            @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category     Category             @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   translations ProductTranslation[] @relation("ProductToTranslation") // One-to-many relation
 }
 
@@ -67,19 +72,20 @@ model ProductTranslation {
   description String
   dimensions  String[]
 
-  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade, name: "ProductToTranslation") // Back relation
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade, name: "ProductToTranslation") // Back relation
 
   @@unique([productId, locale]) // Ensures a product has only one translation per locale
 }
 
 model Category {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  slug      String     @unique
-  image     String?
-  parentId  String?    @db.ObjectId
-  parent    Category?  @relation("CategoryToCategory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  children  Category[] @relation("CategoryToCategory")
-  products  Product[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  slug       String     @unique
+  image      String?
+  parentId   String?    @db.ObjectId
+  parent     Category?  @relation("CategoryToCategory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  children   Category[] @relation("CategoryToCategory")
+  products   Product[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  isFeatured Boolean    @default(false)
 }

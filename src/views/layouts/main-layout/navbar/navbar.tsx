@@ -27,36 +27,30 @@ const Navbar: FC<INavbarProps> = ({ locale, categories }) => {
 
   return (
     <nav className="flex items-center flex-col px-4">
-      <div className="grid grid-cols-mobile lg:grid-cols-3 items-center py-2 lg:px-8 w-300 max-w-full lg:border-b border-solid border-title/15">
-        <div className="hidden lg:block">
-          <LanguagePicker locale={locale} />
+      <div className="flex items-center gap-8 py-2 w-300 max-w-full relative lg:border-b border-solid border-title/15">
+        <div className="hidden lg:flex items-center gap-8">
+          <Link href={Route.HOME} className="">
+            <Image src="/images/logo.png" alt="Logo" width={100} height={100} priority />
+          </Link>
         </div>
-        <Link href={Route.HOME} className="justify-self-center flex items-center">
-          <Image src="/images/logo.png" alt="Logo" width={160} height={160} priority />
-        </Link>
-        <div className="justify-self-end space-y-1">
-          <button
-            onClick={() => setIsSearchOn(!isSearchOn)}
-            className={cn(`flex lg:hidden items-center p-2.5 cursor-pointer`, isSearchOn && 'bg-title/5')}
-          >
-            <Search className="text-title" />
-          </button>
-          <div className="hidden lg:flex flex-col items-end">
+        <div className="w-full hidden lg:flex flex-col justify-center">
+          <div className="flex items-center justify-between">
+            <LanguagePicker locale={locale} />
             <ContactInfo />
+          </div>
+          <div className="flex items-center justify-between">
+            <DesktopNavigation categories={categories} />
+            <button
+              onClick={() => setIsSearchOn(!isSearchOn)}
+              className={cn(`flex items-center px-2.5 py-3 cursor-pointer`, isSearchOn && 'bg-title/5')}
+            >
+              <Search className="text-title" />
+            </button>
           </div>
         </div>
       </div>
-      <div className="block lg:hidden">
+      <div className="block lg:hidden w-full">
         <MobileMenu />
-      </div>
-      <div className="hidden lg:flex justify-between w-300 max-w-full border-b border-solid border-title/15 relative">
-        <DesktopNavigation categories={categories} />
-        <button
-          onClick={() => setIsSearchOn(!isSearchOn)}
-          className={cn(`flex items-center px-2.5 cursor-pointer`, isSearchOn && 'bg-title/5')}
-        >
-          <Search className="text-title" />
-        </button>
       </div>
       <WillRender when={isSearchOn}>
         <div className="w-300 max-w-full lg:py-2.5 flex lg:justify-center">

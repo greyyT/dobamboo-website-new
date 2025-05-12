@@ -3,4 +3,6 @@ enum Intl {
   EN = 'en',
 }
 
+export const LOCALES = [Intl.EN, Intl.VI];
+
 export default Intl;

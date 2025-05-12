@@ -31,6 +31,9 @@ const ContactSocials: FC = () => {
         <Link href="/" className="h-10 block relative">
           <Image src="/images/instagram.png" alt="Instagram" width={30} height={30} />
         </Link>
+        <Link href="/" className="h-10 block relative">
+          <Image src="/images/linkedin.png" alt="Instagram" width={30} height={30} />
+        </Link>
       </div>
     </div>
   );

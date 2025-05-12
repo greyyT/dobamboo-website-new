@@ -1,6 +1,8 @@
 export enum LandingPageType {
   CAROUSEL = 'CAROUSEL',
+  NAVIGATION = 'NAVIGATION',
   PRODUCT_SHOWCASE = 'PRODUCT_SHOWCASE',
+  BROWSE_CATEGORY = 'BROWSE_CATEGORY',
   SHOP_DETAIL = 'SHOP_DETAIL',
 }
 
@@ -11,14 +13,10 @@ type BaseLandingPageItemData = {
 
 export type LandingPageItemData = BaseLandingPageItemData &
   (
-    | {
-        type: LandingPageType.CAROUSEL;
-        data: string[];
-      }
-    | {
-        type: LandingPageType.PRODUCT_SHOWCASE;
-        data: string[];
-      }
+    | { type: LandingPageType.CAROUSEL; data: string[] }
+    | { type: LandingPageType.NAVIGATION; data: string[] }
+    | { type: LandingPageType.PRODUCT_SHOWCASE; data: string[] }
+    | { type: LandingPageType.BROWSE_CATEGORY; data: string[] }
     | {
         type: LandingPageType.SHOP_DETAIL;
         data: {

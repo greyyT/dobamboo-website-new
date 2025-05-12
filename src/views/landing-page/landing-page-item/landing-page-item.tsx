@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { LandingPageItemData, LandingPageType } from '@/types/landing-page-item-data';
 
 import LandingPageCarousel from './landing-page-carousel';
-import LandingPageProductShowcase from './landing-page-product-showcase';
+import LandingPageNavigation from './landing-page-navigation';
 import LandingPageShopDetail from './landing-page-shop-detail';
 
 interface ILandingPageItemProps {
@@ -19,7 +19,11 @@ const LandingPageItem: FC<ILandingPageItemProps> = ({ item }) => {
     return <LandingPageShopDetail data={item} />;
   }
 
-  return <LandingPageProductShowcase data={item} />;
+  if (item.type === LandingPageType.NAVIGATION) {
+    return <LandingPageNavigation data={item} />;
+  }
+
+  return null;
 };
 
 export default LandingPageItem;

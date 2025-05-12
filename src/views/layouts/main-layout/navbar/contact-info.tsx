@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 const ContactInfo: FC = () => {
   return (
-    <>
+    <div>
       <div className="flex items-center text-title text-[13px]">
         <Phone className="h-[14px]" /> Tel:
         <a
@@ -36,7 +36,7 @@ const ContactInfo: FC = () => {
           halinh@handmadevn.vn
         </a>
       </div>
-    </>
+    </div>
   );
 };
 

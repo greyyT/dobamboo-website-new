@@ -187,10 +187,11 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-main-bg: #f5f4f0;
 
-  --color-title: #666666;
-  --color-subtitle: #4d5256;
-  --color-paragraph: #222222;
+  --color-title: #4b4b3e;
+  --color-subtitle: #3a405a;
+  --color-paragraph: #2c2c2c;
   --color-active-breadcrumb: #5385a6;
   --color-heading: #222426;
   --font-raleway: 'Raleway', 'sans-serif';
@@ -201,11 +202,15 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
 
   html,
   body {
     @apply h-full flex flex-col min-h-dvh;
+  }
+
+  .grid-navbar {
+    grid-template-columns: 200px 1fr 200px;
   }
 }

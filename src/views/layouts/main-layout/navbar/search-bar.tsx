@@ -67,13 +67,13 @@ const SearchBar: FC<ISearchBarProps> = ({ locale, closeSearch }) => {
           onFocus={() => setIsOpen(true)}
           onBlur={() => setIsOpen(false)}
           onKeyDown={onEnterPress}
-          className="pl-9 w-128 max-w-full leading-5 text-subtitle text-sm"
+          className="pl-9 w-128 max-w-full leading-5 text-subtitle text-sm border-slate-600/30"
           value={searchContent}
           onChange={e => onUpdateSearchContent(e.target.value)}
         />
       </div>
       <WillRender when={isOpen}>
-        <div className="absolute left-0 right-0 top-full p-2 border mt-2 rounded-xs z-10 bg-white shadow">
+        <div className="absolute left-0 right-0 top-full p-2 border mt-2 rounded-xs z-10 bg-[#f4f1e8] shadow">
           <WillRender>
             <WillRender.If when={searchContent.length === 0}>
               <p className="text-sm text-subtitle p-2">Input the name of the products you want to find.</p>
