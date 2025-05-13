@@ -27,13 +27,13 @@ const Navbar: FC<INavbarProps> = ({ locale, categories }) => {
 
   return (
     <nav className="flex items-center flex-col px-4">
-      <div className="flex items-center gap-8 py-2 w-300 max-w-full relative lg:border-b border-solid border-title/15">
+      <div className="flex items-center gap-8 py-4 w-300 max-w-full relative lg:border-b border-solid border-title/15">
         <div className="hidden lg:flex items-center gap-8">
           <Link href={Route.HOME} className="">
             <Image src="/images/logo.png" alt="Logo" width={100} height={100} priority />
           </Link>
         </div>
-        <div className="w-full hidden lg:flex flex-col justify-center">
+        <div className="w-full hidden lg:flex flex-col justify-center mt-2">
           <div className="flex items-center justify-between">
             <LanguagePicker locale={locale} />
             <ContactInfo />

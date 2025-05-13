@@ -11,9 +11,14 @@ type BaseLandingPageItemData = {
   order: number;
 };
 
+type CarouselItem = {
+  imageUrl: string;
+  redirectUrl: string;
+};
+
 export type LandingPageItemData = BaseLandingPageItemData &
   (
-    | { type: LandingPageType.CAROUSEL; data: string[] }
+    | { type: LandingPageType.CAROUSEL; data: CarouselItem[] }
     | { type: LandingPageType.NAVIGATION; data: string[] }
     | { type: LandingPageType.PRODUCT_SHOWCASE; data: string[] }
     | { type: LandingPageType.BROWSE_CATEGORY; data: string[] }

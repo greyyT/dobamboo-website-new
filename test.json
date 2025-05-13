@@ -1,6 +1,19 @@
 {
-  "67cdbc2091ab4b863ffb9a74": {
-    "name": "Trang trí",
-    "description": "Kalalou cung cấp nội thất và đồ trang trí nhà độc đáo, từ bàn console hiện đại và kệ gỗ mộc mạc đến đèn treo tường, đèn hắt và đèn thả. Khám phá bộ sưu tập sản phẩm của chúng tôi dành cho không gian sống, có sẵn cho các nhà bán lẻ và người mua trên khắp Việt Nam."
+  "67c45efae1c3ad7170b34867": {
+    "0": {
+      "title": "Buy now at Trevita",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deser",
+      "redirectText": "Buy now at Trevita1"
+    },
+    "1": {
+      "title": "Buy now at Trevita",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deser",
+      "redirectText": "Buy now at Trevita2"
+    },
+    "2": {
+      "title": "Buy now at Trevita",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deser",
+      "redirectText": "Buy now at Trevita3"
+    }
   }
 }

@@ -49,7 +49,7 @@ const LanguagePicker: FC<ILanguagePickerProps> = ({ locale }) => {
   return (
     <HoverCard openDelay={100} closeDelay={150}>
       <HoverCardTrigger>
-        <Button variant="outline" size="sm" className="items-center cursor-pointer text-title bg-main-bg">
+        <Button variant="outline" size="sm" className="items-center cursor-pointer text-title">
           <GlobeIcon size={16} className="-mr-0.5 mb-0.5" /> {MAPPED_LOCALE[locale]}
         </Button>
       </HoverCardTrigger>

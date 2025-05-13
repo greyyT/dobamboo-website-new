@@ -53,7 +53,7 @@ export default function DesktopNavigation({ categories }: IDesktopNavigationProp
             {tDefault(getIntlFormat('navbar', item.title))}
           </Link>
           {item.title === 'product' && (
-            <ul className="absolute hidden peer-hover:grid hover:grid top-full left-0 right-0 z-20 bg-[#f4f1e8] drop-shadow-lg grid-cols-5 px-4 py-6 gap-7">
+            <ul className="absolute hidden peer-hover:grid hover:grid top-full left-0 right-0 z-20 bg-white drop-shadow-lg grid-cols-5 px-4 py-6 gap-7">
               {categoriesHaveIntl.map(category => (
                 <li key={category.id}>
                   <Link
