@@ -19,7 +19,7 @@ type CarouselItem = {
 export type LandingPageItemData = BaseLandingPageItemData &
   (
     | { type: LandingPageType.CAROUSEL; data: CarouselItem[] }
-    | { type: LandingPageType.NAVIGATION; data: string[] }
+    | { type: LandingPageType.NAVIGATION; data: CarouselItem[] }
     | { type: LandingPageType.PRODUCT_SHOWCASE; data: string[] }
     | { type: LandingPageType.BROWSE_CATEGORY; data: string[] }
     | {

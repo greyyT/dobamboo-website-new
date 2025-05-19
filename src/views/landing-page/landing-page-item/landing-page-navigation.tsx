@@ -8,12 +8,12 @@ interface ILandingPageNavigationProps {
 }
 
 export default function LandingPageNavigation({ data }: ILandingPageNavigationProps) {
-  const { data: images } = data;
+  const { data: navigations } = data;
   return (
     <div className="flex justify-between gap-8 relative py-10">
-      {images.map((image, idx) => (
-        <Link href={'/'} key={idx} className="w-full pb-60 relative">
-          <Image key={idx} src={image} alt="Image" fill className="relative w-full h-full" />
+      {navigations.map((item, idx) => (
+        <Link href={item.redirectUrl} key={idx} className="w-full pb-60 relative">
+          <Image key={idx} src={item.imageUrl} alt="Image" fill objectFit="cover" className="relative w-full h-full" />
         </Link>
       ))}
     </div>

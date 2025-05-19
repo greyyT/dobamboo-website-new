@@ -13,7 +13,7 @@ const OurStoryPage = () => {
   return (
     <div className={cn(!isActive && 'hidden')}>
       <Screen>
-        <h1 className="text-2xl font-bold text-center">THE DOBAMBOO STORY</h1>
+        <h1 className="text-2xl font-bold text-center">THE TREVITA STORY</h1>
         <p className="text-base text-zinc-600/80 leading-6 mt-8">
           It was a beautiful sun-drenched day in the colorful market square of Ocho Rios, Jamaica when fate was about to
           tap Doug and Susan Williams on the shoulder. The year was 1984, and the young couple had taken one of those

@@ -73,7 +73,7 @@ const SearchBar: FC<ISearchBarProps> = ({ locale, closeSearch }) => {
         />
       </div>
       <WillRender when={isOpen}>
-        <div className="absolute left-0 right-0 top-full p-2 border mt-2 rounded-xs z-10 bg-[#f4f1e8] shadow">
+        <div className="absolute left-0 right-0 top-full p-2 border mt-2 rounded-xs z-10 bg-white shadow">
           <WillRender>
             <WillRender.If when={searchContent.length === 0}>
               <p className="text-sm text-subtitle p-2">Input the name of the products you want to find.</p>

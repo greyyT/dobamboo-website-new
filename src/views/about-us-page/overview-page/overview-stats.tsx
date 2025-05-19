@@ -6,7 +6,7 @@ const OverviewStats = () => {
   return (
     <div className="mt-12 py-16 bg-slate-200/30">
       <Screen>
-        <h1 className="text-center text-3xl font-semibold">Dobamboo By the numbers</h1>
+        <h1 className="text-center text-3xl font-semibold">Trevita By the numbers</h1>
         <div className="grid grid-cols-3 gap-8 mt-12">
           <OverviewCard
             icon={

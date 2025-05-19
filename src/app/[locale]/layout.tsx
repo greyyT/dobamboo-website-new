@@ -12,7 +12,7 @@ import TanstackQueryProvider from '@/provider/query-provider';
 import '../globals.css';
 
 export const metadata: Metadata = {
-  title: 'Dobamboo',
+  title: 'Trevita',
   description: 'A shop that sells stuffs that are made from bamboo',
 };
 
