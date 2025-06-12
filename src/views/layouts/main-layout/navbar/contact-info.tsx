@@ -16,9 +16,9 @@ const ContactInfo: FC = () => {
             'bg-[length:0px_2px] hover:bg-[length:100%_2px] bg-left-bottom bg-no-repeat',
             'transition-[background-size] duration-500',
           )}
-          href="callto:+842462776611"
+          href="callto:+84984323810"
         >
-          +84 24 6277 6611
+          (+84) 984 323 810
         </a>
       </div>
       <div className="flex items-center text-title text-[13px]">
@@ -31,9 +31,9 @@ const ContactInfo: FC = () => {
             'bg-[length:0px_2px] hover:bg-[length:100%_2px] bg-left-bottom bg-no-repeat',
             'transition-[background-size] duration-500',
           )}
-          href="mailto:halinh@handmadevn.vn"
+          href="mailto:info.thetrevita@gmail.com"
         >
-          halinh@handmadevn.vn
+          info.thetrevita@gmail.com
         </a>
       </div>
     </div>
