@@ -31,22 +31,29 @@ const ProductShowcase = async ({ category, subCategory, locale }: IProductShowca
       : '';
 
   return (
-    <section className="flex-[3_1_0%]">
-      <header className="ml-5">
+    <section className="w-full">
+      {/* Header Section */}
+      <header className="px-4 lg:ml-5 lg:px-0">
         <Title>{title}</Title>
-        <p className="text-subtitle text-sm leading-[1.6] mt-1">{description}</p>
+        <p className="text-subtitle text-sm leading-[1.6] mt-1 max-w-3xl">{description}</p>
       </header>
-      <div className="flex justify-between items-center">
-        <p className="text-[15px] text-heading pt-5 font-semibold">Products</p>
-        <div className="flex gap-1">
+
+      {/* Products Header with Filter */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 lg:px-0 mt-6 lg:mt-0">
+        <p className="text-base lg:text-[15px] text-heading pt-2 lg:pt-5 font-semibold">Products</p>
+        <div className="flex gap-1 justify-end sm:justify-start">
           <SelectFilter />
         </div>
       </div>
-      <ProductList
-        locale={locale}
-        initialProducts={initialProducts}
-        categoryId={subCategory ? subCategory.id : category?.id}
-      />
+
+      {/* Product Grid */}
+      <div className="px-4 lg:px-0">
+        <ProductList
+          locale={locale}
+          initialProducts={initialProducts}
+          categoryId={subCategory ? subCategory.id : category?.id}
+        />
+      </div>
     </section>
   );
 };

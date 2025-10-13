@@ -17,13 +17,27 @@ export default function LandingPageLatestNewsSwiper({ blogs }: ILandingPageLates
 
   return (
     <Swiper
-      slidesPerView={4}
+      slidesPerView={1}
       autoplay={{ delay: 3000 }}
-      spaceBetween={40}
+      spaceBetween={20}
       loop
       modules={[Autoplay]}
       speed={800}
       className="w-full relative"
+      breakpoints={{
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 40,
+        },
+      }}
     >
       {featuredBlogs.map((blog, idx) => {
         const startDate = new Date(blog.properties.Date.date.start as string);

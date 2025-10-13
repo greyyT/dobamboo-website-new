@@ -1,11 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import { useMemo } from 'react';
 import { Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { Link } from '@/i18n/navigation';
 import getFeaturedProducts from '@/services/product/get-featured-products';
 
 interface ILandingPageBrowseProductsSwiperProps {
@@ -13,21 +12,31 @@ interface ILandingPageBrowseProductsSwiperProps {
 }
 
 export default function LandingPageBrowseProductsSwiper({ products }: ILandingPageBrowseProductsSwiperProps) {
-  const filteredProductsWithoutName = useMemo(() => {
-    return products.filter(product => product.translations.length > 0);
-  }, [products]);
-
   return (
     <Swiper
-      slidesPerView={4}
+      slidesPerView={1}
       autoplay={{ delay: 3000 }}
-      spaceBetween={40}
+      spaceBetween={20}
       loop
       modules={[Autoplay]}
       speed={800}
       className="w-full relative"
+      breakpoints={{
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 40,
+        },
+      }}
     >
-      {filteredProductsWithoutName.map((product, idx) => (
+      {products.map((product, idx) => (
         <SwiperSlide key={idx} className="w-full">
           <Link key={product.id} href={`/${product.slug}`} className="relative">
             <div className="w-full h-100 relative">

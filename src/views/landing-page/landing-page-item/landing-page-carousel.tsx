@@ -45,7 +45,8 @@ const LandingPageCarousel: FC<ILandingPageCarouselProps> = ({ data }) => {
         <SwiperSlide key={idx} className="w-full">
           <div className="w-full h-full relative">
             <Image src={carouselItem.imageUrl} alt="Image src" fill objectFit="cover" />
-            <div className="absolute bottom-8 left-8">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-50% to-black/60 backdrop-blur-[2px]" />
+            <div className="absolute bottom-8 left-8 z-10">
               <h1 className="font-inter font-bold text-6xl text-slate-100">
                 {t(getIntlFormat(data.id, `${idx}`, 'title'))}
               </h1>

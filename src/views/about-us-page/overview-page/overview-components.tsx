@@ -12,20 +12,46 @@ interface IOverviewRowSectionProps {
 
 export const OverviewRowSection = ({ variant, title, isReverse, children, imageUrl }: IOverviewRowSectionProps) => {
   return (
-    <div className={cn('flex items-center gap-12', isReverse && 'flex-row-reverse')}>
-      <div className={cn('flex flex-col justify-center', variant === 'normal' ? 'flex-1' : 'flex-[4]')}>
-        <h1 className={cn('font-semibold', variant === 'normal' ? 'text-3xl' : 'text-4xl')}>{title}</h1>
-        {children}
+    <div
+      className={cn(
+        'flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-12',
+        isReverse && 'lg:flex-row-reverse',
+      )}
+    >
+      {/* Content Section */}
+      <div
+        className={cn(
+          'flex flex-col justify-center w-full order-2 lg:order-1',
+          variant === 'normal' ? 'lg:flex-1' : 'lg:flex-[4]',
+        )}
+      >
+        <h1
+          className={cn(
+            'font-semibold text-center lg:text-left',
+            variant === 'normal' ? 'text-2xl sm:text-3xl lg:text-3xl' : 'text-3xl sm:text-4xl lg:text-5xl',
+          )}
+        >
+          {title}
+        </h1>
+        <div className="mt-4 sm:mt-6">{children}</div>
       </div>
-      <div className={cn('relative', variant === 'normal' ? 'flex-1' : 'flex-[3]')}>
-        <img src={imageUrl} alt={title} />
+
+      {/* Image Section */}
+      <div className={cn('relative w-full order-1 lg:order-2', variant === 'normal' ? 'lg:flex-1' : 'lg:flex-[3]')}>
+        <div className="aspect-[4/3] sm:aspect-[3/2] lg:aspect-auto lg:h-auto rounded-lg overflow-hidden">
+          <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+        </div>
       </div>
     </div>
   );
 };
 
 export const OverviewRowSectionContent = ({ children }: { children: string }) => {
-  return <p className="text-base leading-6 mt-4 text-justify text-slate-500">{children}</p>;
+  return (
+    <p className="text-sm sm:text-base leading-6 sm:leading-7 text-slate-500 text-center lg:text-left mb-3 sm:mb-4">
+      {children}
+    </p>
+  );
 };
 
 interface IOverviewCardProps {
@@ -35,9 +61,9 @@ interface IOverviewCardProps {
 
 export const OverviewCard = ({ icon, title }: IOverviewCardProps) => {
   return (
-    <div className="bg-white py-6 w-full rounded-md flex flex-col items-center gap-4 drop-shadow-sm">
-      {icon}
-      <h1 className="text-center text-xl font-semibold">{title}</h1>
+    <div className="bg-white py-6 sm:py-8 px-4 w-full rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center gap-3 sm:gap-4">
+      <div className="w-20 sm:w-24 lg:w-28 xl:w-36 flex-shrink-0">{icon}</div>
+      <h2 className="text-center text-lg sm:text-xl font-semibold text-gray-800 leading-tight">{title}</h2>
     </div>
   );
 };

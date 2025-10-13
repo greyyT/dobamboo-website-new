@@ -29,10 +29,10 @@ const LandingPageBrowseCategory = async () => {
   );
 
   return (
-    <section className="mt-12">
-      <div className="w-full flex justify-center relative mb-8">
+    <section className="mt-6 md:mt-12">
+      <div className="w-full flex justify-center relative mb-6 md:mb-8">
         <div className="absolute left-0 right-0 top-1/2 h-px bg-zinc-800" />
-        <h1 className="uppercase font-bold text-2xl z-10 bg-white px-4">Browse our category</h1>
+        <h1 className="uppercase font-bold text-lg md:text-2xl z-10 bg-white px-3 md:px-4">Browse our category</h1>
       </div>
       <LandingPageBrowseCategorySwiper categories={featuredCategories} listNames={listNames} />
     </section>

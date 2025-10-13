@@ -24,12 +24,21 @@ const ProductShowcasePage = async ({ slug, locale }: IProductShowcasePageProps) 
   }
 
   return (
-    <div className="flex justify-center mt-2 lg:mt-11 px-4">
-      <div className="w-300 max-w-full flex flex-col lg:px-4">
+    <div className="flex justify-center mt-2 lg:mt-11 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl flex flex-col">
         <NavigationBreadcrumb category={category} subCategory={subCategory} />
-        <div className="flex mt-11 gap-4">
-          <Sidebar categories={categories} activeCategory={category} activeSubCategory={subCategory} />
-          <ProductShowcase locale={locale} category={category} subCategory={subCategory} />
+
+        {/* Mobile and Desktop Layout */}
+        <div className="flex flex-col lg:flex-row mt-6 lg:mt-11 gap-4 lg:gap-6">
+          {/* Sidebar - Hidden on mobile by default, can be toggled */}
+          <div className="lg:w-80 lg:flex-shrink-0">
+            <Sidebar categories={categories} activeCategory={category} activeSubCategory={subCategory} />
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1 min-w-0">
+            <ProductShowcase locale={locale} category={category} subCategory={subCategory} />
+          </div>
         </div>
       </div>
     </div>

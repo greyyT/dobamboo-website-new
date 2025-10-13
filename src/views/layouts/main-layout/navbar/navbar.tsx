@@ -26,14 +26,15 @@ const Navbar: FC<INavbarProps> = ({ locale, categories }) => {
   const [isSearchOn, setIsSearchOn] = useState(false);
 
   return (
-    <nav className="flex items-center flex-col px-4">
-      <div className="flex items-center gap-8 py-4 w-300 max-w-full relative lg:border-b border-solid border-title/15">
-        <div className="hidden lg:flex items-center gap-8">
+    <nav className="flex items-center flex-col px-4 relative">
+      {/* Desktop Navigation */}
+      <div className="hidden lg:flex items-center gap-4 xl:gap-8 py-4 w-300 max-w-full relative border-b border-solid border-title/15">
+        <div className="flex items-center gap-8">
           <Link href={Route.HOME} className="">
             <Image src="/images/logo.png" alt="Logo" width={100} height={100} priority />
           </Link>
         </div>
-        <div className="w-full hidden lg:flex flex-col justify-center mt-2">
+        <div className="w-full flex flex-col justify-center mt-2">
           <div className="flex items-center justify-between">
             <LanguagePicker locale={locale} />
             <ContactInfo />
@@ -42,18 +43,25 @@ const Navbar: FC<INavbarProps> = ({ locale, categories }) => {
             <DesktopNavigation categories={categories} />
             <button
               onClick={() => setIsSearchOn(!isSearchOn)}
-              className={cn(`flex items-center px-2.5 py-3 cursor-pointer`, isSearchOn && 'bg-title/5')}
+              className={cn(
+                `flex items-center px-2.5 py-3 cursor-pointer hover:bg-title/5 rounded-md transition-colors`,
+                isSearchOn && 'bg-title/5',
+              )}
             >
               <Search className="text-title" />
             </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Navigation */}
       <div className="block lg:hidden w-full">
-        <MobileMenu />
+        <MobileMenu locale={locale} categories={categories} />
       </div>
+
+      {/* Desktop Search Bar */}
       <WillRender when={isSearchOn}>
-        <div className="w-300 max-w-full lg:py-2.5 flex lg:justify-center">
+        <div className="hidden lg:flex w-300 max-w-full py-2.5 justify-center">
           <SearchBar locale={locale} closeSearch={() => setIsSearchOn(false)} />
         </div>
       </WillRender>

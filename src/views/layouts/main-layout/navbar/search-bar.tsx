@@ -57,8 +57,8 @@ const SearchBar: FC<ISearchBarProps> = ({ locale, closeSearch }) => {
   const { data: products, isLoading } = useSearchProducts(debouncedSearchContent, locale);
 
   return (
-    <div className="flex relative">
-      <div className="relative items-center">
+    <div className="flex relative w-full lg:w-auto">
+      <div className="relative items-center w-full lg:w-auto">
         <Search className="absolute h-4 top-1/2 left-2 -translate-y-1/2 text-title" />
         <Input
           type="text"
@@ -67,7 +67,7 @@ const SearchBar: FC<ISearchBarProps> = ({ locale, closeSearch }) => {
           onFocus={() => setIsOpen(true)}
           onBlur={() => setIsOpen(false)}
           onKeyDown={onEnterPress}
-          className="pl-9 w-128 max-w-full leading-5 text-subtitle text-sm border-slate-600/30"
+          className="pl-9 w-full lg:w-128 leading-5 text-subtitle text-sm border-slate-600/30"
           value={searchContent}
           onChange={e => onUpdateSearchContent(e.target.value)}
         />

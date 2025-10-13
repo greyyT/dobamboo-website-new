@@ -15,6 +15,11 @@ interface ILandingPageShopDetailProps {
 const LandingPageShopDetail = async ({ data }: ILandingPageShopDetailProps) => {
   const t = await getTranslations(View.LANDING_PAGE);
 
+  // Check if translation exists, return null if not
+  if (!t.has(data.id)) {
+    return null;
+  }
+
   return (
     <div
       className={cn(

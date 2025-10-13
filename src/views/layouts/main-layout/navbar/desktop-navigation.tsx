@@ -39,13 +39,13 @@ export default function DesktopNavigation({ categories }: IDesktopNavigationProp
   }, []);
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-2 lg:gap-4">
       {NAVBAR_ITEMS.map(item => (
         <div key={item.href}>
           <Link
             href={item.href}
             className={cn(
-              'block relative text-title text-sm font-semibold uppercase tracking-[3px] leading-8 px-2.5 py-1 peer',
+              'block relative text-title text-sm font-semibold uppercase tracking-[3px] leading-8 px-2.5 py-1 peer hover:bg-title/5 rounded-md transition-colors',
               item.title === 'product' &&
                 'after:absolute after:-bottom-5 after:h-10 after:-left-3 after:-right-3 after:block',
             )}

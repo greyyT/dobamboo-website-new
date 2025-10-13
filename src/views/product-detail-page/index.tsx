@@ -11,8 +11,8 @@ interface IProductDetailPageProps {
 
 const ProductDetailPage: FC<IProductDetailPageProps> = ({ product }) => {
   return (
-    <main className="flex justify-center mt-2 lg:mt-11 px-4">
-      <div className="w-full max-w-screen-xl flex flex-col lg:px-4">
+    <main className="flex justify-center mt-2 lg:mt-11 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl flex flex-col">
         <NavigationBreadcrumb product={product} />
         <ProductDetail product={product} />
       </div>

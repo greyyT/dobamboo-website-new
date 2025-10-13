@@ -65,73 +65,114 @@ const ContactForm: FC = () => {
   }
 
   return (
-    <div className="">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>We are here to help</CardTitle>
-          <CardDescription>
+    <div className="w-full">
+      <Card className="w-full shadow-sm border-gray-200">
+        <CardHeader className="p-6 sm:p-8">
+          <CardTitle className="text-xl sm:text-2xl font-semibold text-gray-800">We are here to help</CardTitle>
+          <CardDescription className="text-sm sm:text-base text-gray-600 leading-relaxed mt-3">
             Let us know how we can best serve you. Use the contact form to email us or select from the topics below that
-            best fit your needs. It&apos;s an honor to support you in your journey towards better experience.
+            best fit your needs. It's an honor to support you in your journey towards better experience.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+
+        <CardContent className="p-6 sm:p-8 pt-0">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2" ref={formRef}>
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Please input your name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Please input your email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" ref={formRef}>
+              {/* Name and Email Fields */}
+              <div className="space-y-4 sm:space-y-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-sm sm:text-base font-medium text-gray-700">Name *</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Please input your name"
+                          {...field}
+                          className="h-10 sm:h-11 text-sm sm:text-base"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-sm sm:text-base font-medium text-gray-700">Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Please input your email"
+                          {...field}
+                          className="h-10 sm:h-11 text-sm sm:text-base"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              {/* Phone Number */}
               <FormField
                 control={form.control}
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone</FormLabel>
+                    <FormLabel className="text-sm sm:text-base font-medium text-gray-700">Phone Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="Please input your phone number" {...field} />
+                      <Input
+                        placeholder="Please input your phone number"
+                        {...field}
+                        className="h-10 sm:h-11 text-sm sm:text-base"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {/* Message */}
               <FormField
                 control={form.control}
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Message</FormLabel>
+                    <FormLabel className="text-sm sm:text-base font-medium text-gray-700">Message *</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="What do you want to tell us?" {...field} rows={4} />
+                      <Textarea
+                        placeholder="What do you want to tell us?"
+                        {...field}
+                        rows={5}
+                        className="resize-none text-sm sm:text-base"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button className="mt-4" type="submit">
-                {isLoading ? <Loader2 className="size-4 animate-spin" /> : 'Submit'}
-              </Button>
+
+              {/* Submit Button */}
+              <div className="pt-2 sm:pt-4">
+                <Button
+                  className="w-full sm:w-auto min-w-[140px] h-11 sm:h-12 text-sm sm:text-base font-medium"
+                  type="submit"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
+                </Button>
+              </div>
             </form>
           </Form>
         </CardContent>

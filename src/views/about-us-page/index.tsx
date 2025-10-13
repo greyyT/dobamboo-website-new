@@ -6,9 +6,14 @@ import TabSelect from './tab-select';
 
 const AboutUsPage = () => {
   return (
-    <div>
-      <TabSelect />
-      <div className="mt-12">
+    <div className="min-h-screen">
+      {/* Tab Navigation */}
+      <div className="sticky top-0 bg-white z-10 border-b border-gray-100 px-4 sm:px-6 lg:px-8">
+        <TabSelect />
+      </div>
+
+      {/* Page Content */}
+      <div className="mt-6 sm:mt-8 lg:mt-12">
         <OverviewPage />
         <OurStoryPage />
       </div>
