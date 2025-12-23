@@ -8,10 +8,10 @@ const ContactSocials: FC = () => {
       {/* Company Info */}
       <div className="bg-white rounded-lg shadow-sm p-6 sm:p-8 mb-6 sm:mb-8">
         <div className="text-center lg:text-left">
-          <h3 className="text-xl sm:text-2xl text-primary font-semibold mb-4">Dobamboo</h3>
+          <h3 className="text-xl sm:text-2xl text-primary font-semibold mb-4">The TRE VITA</h3>
           <div className="text-gray-600 space-y-1">
-            <p className="text-sm sm:text-base">3844 West Northside Drive</p>
-            <p className="text-sm sm:text-base">Jackson, MS 39209</p>
+            <p className="text-sm sm:text-base">Phu Vinh Handicraft Village</p>
+            <p className="text-sm sm:text-base">Phu Nghia Commune, Hanoi City, Vietnam</p>
           </div>
         </div>
       </div>
@@ -26,12 +26,51 @@ const ContactSocials: FC = () => {
           {/* Phone */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
             <p className="font-medium text-gray-700 text-sm sm:text-base min-w-0 sm:min-w-[120px]">Phone</p>
-            <a
-              className="text-sm sm:text-base text-primary hover:text-primary/80 transition-colors"
-              href="tel:842462776611"
-            >
-              +84 24 6277 6611
-            </a>
+            <div className="flex flex-col gap-1">
+              <a
+                className="text-sm sm:text-base text-primary hover:text-primary/80 transition-colors"
+                href="tel:+84971067957"
+              >
+                (+84) 971 067 957
+              </a>
+              <a
+                className="text-sm sm:text-base text-primary hover:text-primary/80 transition-colors"
+                href="tel:+84385371493"
+              >
+                (+84) 385 371 493
+              </a>
+            </div>
+          </div>
+
+          {/* WhatsApp */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <p className="font-medium text-gray-700 text-sm sm:text-base min-w-0 sm:min-w-[120px]">WhatsApp</p>
+            <div className="flex flex-col gap-1">
+              <a
+                className="text-sm sm:text-base text-primary hover:text-primary/80 transition-colors"
+                href="https://wa.me/84971067957"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                (+84) 971 067 957
+              </a>
+              <a
+                className="text-sm sm:text-base text-primary hover:text-primary/80 transition-colors"
+                href="https://wa.me/84385371493"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                (+84) 385 371 493
+              </a>
+              <a
+                className="text-sm sm:text-base text-primary hover:text-primary/80 transition-colors"
+                href="https://wa.me/84984323810"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                (+84) 984 323 810
+              </a>
+            </div>
           </div>
 
           {/* Email */}
@@ -39,9 +78,9 @@ const ContactSocials: FC = () => {
             <p className="font-medium text-gray-700 text-sm sm:text-base min-w-0 sm:min-w-[120px]">Email</p>
             <a
               className="text-sm sm:text-base text-primary hover:text-primary/80 transition-colors break-all"
-              href="mailto:halinh@handmadevn.vn"
+              href="mailto:info.thetrevita@gmail.com"
             >
-              halinh@handmadevn.vn
+              info.thetrevita@gmail.com
             </a>
           </div>
         </div>

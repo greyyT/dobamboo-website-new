@@ -6,6 +6,7 @@ import { useLocale } from 'next-intl';
 import { Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import WillRender from '@/components/will-render';
 import getFeaturedCategories from '@/services/category/get-featured-categories';
 
 interface ILandingPageBrowseCategorySwiperProps {
@@ -55,7 +56,9 @@ export default function LandingPageBrowseCategorySwiper({
             className="relative"
           >
             <div className="w-full h-100 relative">
-              <Image src={category.image ?? ''} alt="Image src" fill objectFit="cover" />
+              <WillRender when={!!category.image}>
+                <Image src={category.image ?? ''} alt="Image src" fill objectFit="cover" />
+              </WillRender>
             </div>
             <p className="text-title uppercase mt-2.5 text-sm leading-5">{listNames[idx]}</p>
           </Link>
