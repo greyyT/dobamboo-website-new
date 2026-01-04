@@ -92,9 +92,11 @@ const ContactSocials: FC = () => {
 
         <div className="flex justify-center lg:justify-start gap-4 sm:gap-6">
           <Link
-            href="/"
+            href="https://www.facebook.com/share/1CeQkbgWMM/?mibextid=wwXIfr"
             className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors group"
             aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src="/images/facebook.png"
@@ -118,9 +120,11 @@ const ContactSocials: FC = () => {
             />
           </Link>
           <Link
-            href="/"
+            href="https://www.instagram.com/the.trevita/?igsh=d2JwcDB1Nm5rNjh3&utm_source=qr"
             className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors group"
             aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src="/images/instagram.png"
@@ -131,9 +135,11 @@ const ContactSocials: FC = () => {
             />
           </Link>
           <Link
-            href="/"
+            href="https://www.linkedin.com/company/the-tre-vita-mfg-trading-co-ltd/"
             className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors group"
             aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src="/images/linkedin.png"
