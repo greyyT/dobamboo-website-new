@@ -37,17 +37,32 @@ export default function Footer() {
         <li>
           <h4 className="uppercase text-[15px] text-subtitle leading-6 font-semibold tracking-[0.5px]">Follow us on</h4>
           <div className="flex gap-6 mt-5">
-            <Link href="https://www.facebook.com/share/1CeQkbgWMM/?mibextid=wwXIfr" className="h-10 block relative" target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://www.facebook.com/share/1CeQkbgWMM/?mibextid=wwXIfr"
+              className="h-10 block relative"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image src="/images/facebook.png" alt="Facebook" width={30} height={30} />
             </Link>
             <Link href={Route.HOME} className="h-10 block relative">
               <Image src="/images/pinterest.png" alt="Pinterest" width={30} height={30} />
             </Link>
-            <Link href="https://www.instagram.com/the.trevita/?igsh=d2JwcDB1Nm5rNjh3&utm_source=qr" className="h-10 block relative" target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://www.instagram.com/the.trevita/?igsh=d2JwcDB1Nm5rNjh3&utm_source=qr"
+              className="h-10 block relative"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image src="/images/instagram.png" alt="Instagram" width={30} height={30} />
             </Link>
 
-            <Link href="https://www.linkedin.com/company/the-tre-vita-mfg-trading-co-ltd/" className="h-10 block relative" target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://www.linkedin.com/company/the-tre-vita-mfg-trading-co-ltd/"
+              className="h-10 block relative"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className="w-7.5 h-7.5 bg-slate-600/80">
                 <Image src="/images/linkedin.png" alt="Instagram" width={30} height={30} />
               </div>
