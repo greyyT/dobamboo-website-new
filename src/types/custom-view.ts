@@ -1,3 +1,5 @@
+import { Language } from '@prisma/client';
+
 export enum CustomLayoutItemType {
   BACKGROUND_TITLE = 'BACKGROUND_TITLE',
   IMAGE_TEXT_BLOCK = 'IMAGE_TEXT_BLOCK',
@@ -40,7 +42,7 @@ export type CustomLayoutItemData =
 
 export interface CustomLayoutItemTranslation {
   id: string;
-  locale: string;
+  locale: Language;
   data: CustomLayoutItemData;
 }
 

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import { cn } from '@/lib/utils';
 import { ImageTextBlockData } from '@/types/custom-view';
 
 interface IImageTextBlockProps {
@@ -8,8 +9,10 @@ interface IImageTextBlockProps {
 
 export default function ImageTextBlock({ data }: IImageTextBlockProps) {
   const imageElement = (
-    <div className="relative aspect-square overflow-hidden">
-      <Image src={data.image} alt="" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+    <div className={cn('relative aspect-square overflow-hidden', !data.image && 'bg-gray-300')}>
+      {data.image && (
+        <Image src={data.image} alt="" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+      )}
     </div>
   );
 

@@ -1,5 +1,34 @@
+import { Prisma } from '@prisma/client';
+
 import db from '@/lib/db';
-import { CustomViewResponse } from '@/types/custom-view';
+import { CustomLayoutItemData, CustomLayoutItemType, CustomViewResponse } from '@/types/custom-view';
+
+type CustomViewWithItems = Prisma.CustomViewGetPayload<{
+  include: {
+    items: {
+      include: { translations: true };
+    };
+  };
+}>;
+
+function mapToCustomViewResponse(view: CustomViewWithItems): CustomViewResponse {
+  return {
+    id: view.id,
+    slug: view.slug,
+    createdAt: view.createdAt.toISOString(),
+    updatedAt: view.updatedAt.toISOString(),
+    items: view.items.map(item => ({
+      id: item.id,
+      type: item.type as CustomLayoutItemType,
+      order: item.order,
+      translations: item.translations.map(t => ({
+        id: t.id,
+        locale: t.locale,
+        data: t.data as unknown as CustomLayoutItemData,
+      })),
+    })),
+  };
+}
 
 export default async function getCustomViewBySlug(slug: string): Promise<CustomViewResponse | null> {
   'use cache';
@@ -16,5 +45,5 @@ export default async function getCustomViewBySlug(slug: string): Promise<CustomV
 
   if (!customView) return null;
 
-  return customView as unknown as CustomViewResponse;
+  return mapToCustomViewResponse(customView);
 }
