@@ -14,3 +14,4 @@ Architectural decisions, patterns discovered, and conventions.
 - CMS-driven rendering: LandingPageView fetches items, switches on `type` to render block components
 - Locale: `Intl` enum (lowercase `en`/`vi`) in routing, `Language` enum (uppercase `EN`/`VI`) in Prisma
 - Conversion: `locale.toUpperCase() as Language`
+- i18n `notFound` helper in `src/i18n/navigation.ts` is redirect-based; unknown slug flows can return HTTP 307 to `/{locale}/not-found` before final not-found page render
