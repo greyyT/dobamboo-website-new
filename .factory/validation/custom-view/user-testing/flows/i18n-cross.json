@@ -1,0 +1,179 @@
+{
+  "groupId": "i18n-cross",
+  "testedAt": "2026-03-08T13:02:30Z",
+  "credentials": {
+    "account": "ut-validator-e@local.invalid",
+    "namespace": "ns-i18n-353a918a"
+  },
+  "toolsUsed": ["agent-browser", "curl", "code-inspection"],
+  "assertions": [
+    {
+      "id": "VAL-I18N-001",
+      "title": "Correct locale resolution from URL to Prisma Language enum",
+      "status": "blocked",
+      "steps": [
+        {
+          "action": "Open http://localhost:3100/en/ut-cv-full-353a918a",
+          "expected": "EN content renders from Language.EN translation",
+          "observed": "Page returned Internal Server Error"
+        },
+        {
+          "action": "Open http://localhost:3100/vi/ut-cv-full-353a918a",
+          "expected": "VI content renders from Language.VI translation",
+          "observed": "Page returned Internal Server Error"
+        },
+        {
+          "action": "Inspect locale mapping implementation",
+          "expected": "Locale maps via en->EN, vi->VI and translation lookup uses enum locale",
+          "observed": "Found `locale.toUpperCase() as Language` and `item.translations.find(t => t.locale === language)` in src/views/custom-view-page/index.tsx"
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/i18n-en-full.png",
+          "screenshots/i18n-vi-full.png"
+        ],
+        "consoleErrors": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+        "network": "curl GET /en/ut-cv-full-353a918a -> 500; curl GET /vi/ut-cv-full-353a918a -> 500",
+        "codeReferences": [
+          "src/views/custom-view-page/index.tsx:26",
+          "src/views/custom-view-page/index.tsx:31"
+        ],
+        "urlEvidence": [
+          "http://localhost:3100/en/ut-cv-full-353a918a",
+          "http://localhost:3100/vi/ut-cv-full-353a918a"
+        ],
+        "textEvidence": ["Internal Server Error"]
+      },
+      "issues": "Cannot validate runtime locale resolution because target pages are returning HTTP 500."
+    },
+    {
+      "id": "VAL-I18N-002",
+      "title": "English translation content renders for EN locale",
+      "status": "blocked",
+      "steps": [
+        {
+          "action": "Open http://localhost:3100/en/ut-cv-full-353a918a and capture visible text",
+          "expected": "All block text is EN content",
+          "observed": "Only Internal Server Error page text is visible"
+        }
+      ],
+      "evidence": {
+        "screenshots": ["screenshots/i18n-en-full.png"],
+        "consoleErrors": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+        "network": "curl GET /en/ut-cv-full-353a918a -> 500",
+        "urlEvidence": ["http://localhost:3100/en/ut-cv-full-353a918a"],
+        "textEvidence": ["Internal Server Error"]
+      },
+      "issues": "EN fixture route unavailable due server-side 500; EN translation content could not be validated."
+    },
+    {
+      "id": "VAL-I18N-003",
+      "title": "Vietnamese translation content renders for VI locale",
+      "status": "blocked",
+      "steps": [
+        {
+          "action": "Open http://localhost:3100/vi/ut-cv-full-353a918a and capture visible text",
+          "expected": "All block text is VI content",
+          "observed": "Only Internal Server Error page text is visible"
+        }
+      ],
+      "evidence": {
+        "screenshots": ["screenshots/i18n-vi-full.png"],
+        "consoleErrors": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+        "network": "curl GET /vi/ut-cv-full-353a918a -> 500",
+        "urlEvidence": ["http://localhost:3100/vi/ut-cv-full-353a918a"],
+        "textEvidence": ["Internal Server Error"]
+      },
+      "issues": "VI fixture route unavailable due server-side 500; VI translation content could not be validated."
+    },
+    {
+      "id": "VAL-I18N-004",
+      "title": "Missing translation falls back gracefully",
+      "status": "blocked",
+      "steps": [
+        {
+          "action": "Open http://localhost:3100/en/ut-cv-missing-en-353a918a",
+          "expected": "Page renders without runtime crash, using fallback or empty/default content",
+          "observed": "Page returned Internal Server Error"
+        },
+        {
+          "action": "Inspect translation fallback implementation",
+          "expected": "Missing locale falls back safely",
+          "observed": "Found fallback to first translation and default empty data objects in src/views/custom-view-page/index.tsx"
+        }
+      ],
+      "evidence": {
+        "screenshots": ["screenshots/i18n-en-missing-translation.png"],
+        "consoleErrors": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+        "network": "curl GET /en/ut-cv-missing-en-353a918a -> 500",
+        "codeReferences": [
+          "src/views/custom-view-page/index.tsx:31",
+          "src/views/custom-view-page/index.tsx:37-58"
+        ],
+        "urlEvidence": ["http://localhost:3100/en/ut-cv-missing-en-353a918a"],
+        "textEvidence": ["Internal Server Error"]
+      },
+      "issues": "Runtime fallback behavior could not be validated because the fixture page crashes with HTTP 500 before block render."
+    },
+    {
+      "id": "VAL-CROSS-002",
+      "title": "Full page integration — multiple block types with bilingual content",
+      "status": "blocked",
+      "steps": [
+        {
+          "action": "Open full fixture in EN and VI locales",
+          "expected": "All 5 block types render with navbar/footer; locale switch updates text",
+          "observed": "Both locale URLs return Internal Server Error"
+        },
+        {
+          "action": "Attempt locale switch verification",
+          "expected": "Switching locale updates visible block text",
+          "observed": "Not testable because page failed before rendering interactive layout"
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/i18n-en-full.png",
+          "screenshots/i18n-vi-full.png"
+        ],
+        "consoleErrors": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+        "network": "curl GET /en/ut-cv-full-353a918a -> 500; curl GET /vi/ut-cv-full-353a918a -> 500",
+        "urlEvidence": [
+          "http://localhost:3100/en/ut-cv-full-353a918a",
+          "http://localhost:3100/vi/ut-cv-full-353a918a"
+        ],
+        "textEvidence": ["Internal Server Error"]
+      },
+      "issues": "End-to-end full-page integration blocked by server-side HTTP 500 responses on all tested locale routes."
+    }
+  ],
+  "frictions": [
+    {
+      "description": "agent-browser network log output did not include HTTP status codes, so curl checks were added for explicit 500 status evidence.",
+      "resolved": true,
+      "resolution": "Used curl status probes alongside agent-browser screenshots and console checks.",
+      "affectedAssertions": [
+        "VAL-I18N-001",
+        "VAL-I18N-002",
+        "VAL-I18N-003",
+        "VAL-I18N-004",
+        "VAL-CROSS-002"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "description": "Application returned HTTP 500 for all tested locale routes (including /en home and all assigned fixture pages), preventing runtime i18n validation through the user surface.",
+      "affectedAssertions": [
+        "VAL-I18N-001",
+        "VAL-I18N-002",
+        "VAL-I18N-003",
+        "VAL-I18N-004",
+        "VAL-CROSS-002"
+      ],
+      "quickFixAttempted": "Retried target URLs multiple times via curl, reloaded/navigated with agent-browser, and verified repeated 500 responses persisted."
+    }
+  ],
+  "summary": "Tested 5 assigned assertions; all 5 are blocked by persistent HTTP 500 responses on the application user surface. Code inspection confirms locale enum mapping and fallback logic are implemented, but runtime behavior could not be validated."
+}

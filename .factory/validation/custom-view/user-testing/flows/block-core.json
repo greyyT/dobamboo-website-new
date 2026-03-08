@@ -1,0 +1,180 @@
+{
+  "groupId": "block-core",
+  "testedAt": "2026-03-08T14:07:13Z",
+  "credentials": {
+    "account": "ut-validator-c@local.invalid",
+    "namespace": "ns-block-core-353a918a"
+  },
+  "toolsUsed": [
+    "agent-browser",
+    "curl"
+  ],
+  "assertions": [
+    {
+      "id": "VAL-BLOCK-001",
+      "title": "BACKGROUND_TITLE renders hero banner correctly",
+      "status": "pass",
+      "steps": [
+        {
+          "action": "Open http://localhost:3100/en/ut-cv-full-353a918a on desktop (1440x900)",
+          "expected": "Hero block shows full-width background image, dark overlay, centered title/subtitle",
+          "observed": "Hero rendered with outer container `relative w-full h-96 flex items-center justify-center overflow-hidden`, overlay `absolute inset-0 bg-black/50`, and centered text wrapper `relative z-10 text-center text-white px-4` containing `h1.text-4xl.font-bold` (UT Full EN Title) and `p.text-xl.mt-2` (UT Full EN Subtitle)."
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/block-core-rerun-desktop-annotated.png",
+          "screenshots/block-core-rerun-desktop-full.png"
+        ],
+        "consoleErrors": "none (agent-browser errors check on desktop/mobile returned empty)",
+        "network": "GET /en/ut-cv-full-353a918a -> 200; GET /_next/image (hero image) -> 200"
+      },
+      "issues": null
+    },
+    {
+      "id": "VAL-BLOCK-003",
+      "title": "IMAGE_TEXT_BLOCK renders two-column layout",
+      "status": "pass",
+      "steps": [
+        {
+          "action": "Inspect IMAGE_TEXT_BLOCK DOM on desktop (1440x900)",
+          "expected": "Two-column layout with image left, text right, and preserved line breaks",
+          "observed": "Grid rendered as `grid grid-cols-1 md:grid-cols-2 gap-6` with computed columns `708px 708px`; child[0] is image container `relative aspect-square overflow-hidden` with `img.object-cover`; child[1] is `flex items-center` containing `p.whitespace-pre-wrap` with computed white-space `pre-wrap` and text `UT EN image-left line 1\nUT EN image-left line 2`."
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/block-core-rerun-desktop-full.png"
+        ],
+        "consoleErrors": "none",
+        "network": "GET /en/ut-cv-full-353a918a -> 200"
+      },
+      "issues": null
+    },
+    {
+      "id": "VAL-BLOCK-005",
+      "title": "IMAGE_TEXT_BLOCK stacks on mobile",
+      "status": "pass",
+      "steps": [
+        {
+          "action": "Set viewport to 390x844 and reload fixture page",
+          "expected": "IMAGE_TEXT_BLOCK stacks vertically on mobile",
+          "observed": "Same responsive class present (`grid grid-cols-1 md:grid-cols-2 gap-6`) and computed mobile grid columns is `390px` (single column); child order is image first then text, confirming stacked layout."
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/block-core-rerun-mobile-annotated.png",
+          "screenshots/block-core-rerun-mobile-full.png"
+        ],
+        "consoleErrors": "none",
+        "network": "GET /en/ut-cv-full-353a918a -> 200"
+      },
+      "issues": null
+    },
+    {
+      "id": "VAL-BLOCK-006",
+      "title": "ICON_TEXT_ROW renders responsive grid of cards",
+      "status": "pass",
+      "steps": [
+        {
+          "action": "Inspect ICON_TEXT_ROW on desktop (1440x900)",
+          "expected": "3-column card grid with centered icon + text",
+          "observed": "Grid class is `grid grid-cols-1 md:grid-cols-3 gap-4`; computed desktop columns are `469.328px 469.328px 469.344px`; 3 cards rendered with labels Quality/Sustainable/Handcrafted; each card class `flex flex-col items-center p-4` and icon wrapper `relative w-16 h-16` (computed image size 64x64)."
+        },
+        {
+          "action": "Inspect ICON_TEXT_ROW on mobile (390x844)",
+          "expected": "Single-column stack",
+          "observed": "Computed mobile columns are `390px` (1 column) with same 3 cards stacked vertically."
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/block-core-rerun-desktop-full.png",
+          "screenshots/block-core-rerun-mobile-full.png"
+        ],
+        "consoleErrors": "none",
+        "network": "GET /_next/image (icon image) -> 200"
+      },
+      "issues": null
+    },
+    {
+      "id": "VAL-BLOCK-008",
+      "title": "BOTTOM_IMAGE_TEXT renders image with text overlay",
+      "status": "pass",
+      "steps": [
+        {
+          "action": "Inspect bottom image text block in DOM",
+          "expected": "Fixed-height image container with dark overlay and centered text",
+          "observed": "Block rendered as `div.relative.h-64` with child `img.object-cover` and overlay child `div.absolute.inset-0.bg-black/40.flex.items-center.justify-center` containing `p.text-white.text-2xl.font-bold` text `Visit Us Today`."
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/block-core-rerun-desktop-full.png"
+        ],
+        "consoleErrors": "none",
+        "network": "GET /en/ut-cv-full-353a918a -> 200"
+      },
+      "issues": null
+    },
+    {
+      "id": "VAL-BLOCK-010",
+      "title": "TEXT_BLOCK renders plain text with line breaks",
+      "status": "pass",
+      "steps": [
+        {
+          "action": "Inspect TEXT_BLOCK paragraph node",
+          "expected": "Padded container with preserved line breaks",
+          "observed": "Paragraph rendered with class `whitespace-pre-wrap` and computed `white-space: pre-wrap`; padded ancestor class is `p-6`; text sample preserved as `Paragraph one.\n\nParagraph two.\nLine three.`"
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/block-core-rerun-desktop-full.png"
+        ],
+        "consoleErrors": "none",
+        "network": "GET /en/ut-cv-full-353a918a -> 200"
+      },
+      "issues": null
+    },
+    {
+      "id": "VAL-CROSS-001",
+      "title": "Items render in correct order",
+      "status": "pass",
+      "steps": [
+        {
+          "action": "Inspect DOM order indexes for key block anchors",
+          "expected": "BACKGROUND_TITLE -> IMAGE_TEXT_BLOCK -> ICON_TEXT_ROW -> BOTTOM_IMAGE_TEXT -> TEXT_BLOCK",
+          "observed": "Observed ascending DOM indexes: BACKGROUND_TITLE=125, IMAGE_TEXT_BLOCK=131, ICON_TEXT_ROW=133, BOTTOM_IMAGE_TEXT=145, TEXT_BLOCK=150, matching required order."
+        }
+      ],
+      "evidence": {
+        "screenshots": [
+          "screenshots/block-core-rerun-desktop-full.png"
+        ],
+        "consoleErrors": "none",
+        "network": "GET /en/ut-cv-full-353a918a -> 200"
+      },
+      "issues": null
+    }
+  ],
+  "frictions": [
+    {
+      "description": "agent-browser network request logging did not return per-request status codes in this run.",
+      "resolved": true,
+      "resolution": "Used curl status checks for document and Next image URLs while keeping DOM/layout validation in agent-browser.",
+      "affectedAssertions": [
+        "VAL-BLOCK-001",
+        "VAL-BLOCK-003",
+        "VAL-BLOCK-005",
+        "VAL-BLOCK-006",
+        "VAL-BLOCK-008",
+        "VAL-BLOCK-010",
+        "VAL-CROSS-001"
+      ]
+    }
+  ],
+  "blockers": [],
+  "summary": "Re-ran 7 assigned assertions after setup fix; all 7 passed on fixture /en/ut-cv-full-353a918a with desktop+mobile checks and DOM class/order verification."
+}

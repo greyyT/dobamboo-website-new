@@ -1,0 +1,27 @@
+{
+  "groupId": "infra-cmd-rerun",
+  "testedAt": "2026-03-08T14:40:00Z",
+  "credentials": {
+    "account": "ut-validator-a@local.invalid",
+    "namespace": "ns-cmd-353a918a"
+  },
+  "toolsUsed": ["Execute", "Read"],
+  "assertions": [
+    {"id": "VAL-INFRA-001", "status": "pass", "evidence": "npx prisma generate exit 0; schema contains CustomView models and CustomLayoutItemType enum values."},
+    {"id": "VAL-INFRA-002", "status": "pass", "evidence": "yarn build exit 0 after stopping dev server; 161 pages generated successfully."},
+    {"id": "VAL-INFRA-003", "status": "pass", "evidence": "yarn lint exit 0 with 'No ESLint warnings or errors'."},
+    {"id": "VAL-INFRA-004", "status": "pass", "evidence": "src/types/custom-view.ts exports all required interfaces/enums/types and is consumed by service/view files."},
+    {"id": "VAL-EDGE-005", "status": "pass", "evidence": "Build succeeds; generateStaticParams uses products only and getCustomViewBySlug returns null safely, so empty CustomView collection won't break build/start."},
+    {"id": "VAL-CROSS-004", "status": "pass", "evidence": "[slug] page is a server component and fetches getCustomViewBySlug before render; no client-side query hook used."},
+    {"id": "VAL-EDGE-002", "status": "pass", "evidence": "CustomViewPage switch default returns null for unknown type, skipping unrecognized items safely."}
+  ],
+  "frictions": [
+    {
+      "description": "Earlier build failures were caused by running build concurrently with next dev (manifest/chunk conflicts).",
+      "resolved": true,
+      "resolution": "Stopped dev server before running validators; build passed."
+    }
+  ],
+  "blockers": [],
+  "summary": "Rerun completed with all 7 command/code assertions passing."
+}

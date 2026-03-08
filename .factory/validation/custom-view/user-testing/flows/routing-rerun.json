@@ -1,0 +1,21 @@
+{
+  "groupId": "routing-rerun",
+  "testedAt": "2026-03-08T14:41:00Z",
+  "credentials": {
+    "account": "ut-validator-b@local.invalid",
+    "namespace": "ns-route-353a918a"
+  },
+  "toolsUsed": ["curl"],
+  "assertions": [
+    {"id": "VAL-ROUTE-001", "status": "pass", "evidence": "/en/ut-cv-full-353a918a returned 200 and HTML contains custom-view text 'UT Full EN Title'."},
+    {"id": "VAL-ROUTE-002", "status": "pass", "evidence": "/en/ut-product-only-353a918a returned 200 and contains product text 'UT Product Only EN'."},
+    {"id": "VAL-ROUTE-003", "status": "pass", "evidence": "Unknown slug responds with 307 redirect to /en/not-found and rendered page contains 'Not found'."},
+    {"id": "VAL-ROUTE-004", "status": "pass", "evidence": "/en/about-us, /en/contact, /en/blog, /en/product all returned 200 and none contain custom-view fixture text."},
+    {"id": "VAL-ROUTE-005", "status": "pass", "evidence": "/en/ut-shared-slug-353a918a returned 200 and shows custom-view text 'UT custom view overrides product EN' while product text is absent."},
+    {"id": "VAL-CROSS-003", "status": "pass", "evidence": "Custom-view HTML contains both <nav> and <footer>, confirming main layout wrapper."},
+    {"id": "VAL-EDGE-001", "status": "pass", "evidence": "/en/ut-cv-empty-items-353a918a returned 200, no runtime error text, and layout rendered normally."}
+  ],
+  "frictions": [],
+  "blockers": [],
+  "summary": "Rerun routing validation passed all 7 assigned assertions after setup stabilization."
+}
