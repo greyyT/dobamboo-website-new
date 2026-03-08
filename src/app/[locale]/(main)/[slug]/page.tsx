@@ -1,7 +1,9 @@
 import Intl from '@/constants/intl';
 import { notFound } from '@/i18n/navigation';
+import getCustomViewBySlug from '@/services/custom-view/get-custom-view-by-slug';
 import getAllProducts from '@/services/product/get-all-products';
 import getProductFromSlug from '@/services/product/get-product-from-slug';
+import CustomViewPage from '@/views/custom-view-page';
 import ProductDetailPage from '@/views/product-detail-page';
 
 export const dynamicParams = true;
@@ -21,6 +23,12 @@ interface IProductPageProps {
 
 export default async function ProductPage({ params }: IProductPageProps) {
   const { slug, locale } = await params;
+
+  const customView = await getCustomViewBySlug(slug);
+
+  if (customView) {
+    return <CustomViewPage customView={customView} locale={locale} />;
+  }
 
   const product = await getProductFromSlug(slug, locale);
 
