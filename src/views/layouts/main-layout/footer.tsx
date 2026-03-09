@@ -9,17 +9,14 @@ export default function Footer() {
       <ul className="flex flex-col sm:grid sm:grid-cols-3 w-300 max-w-full lg:px-4 gap-y-4">
         <li>
           <h4 className="uppercase text-[15px] text-subtitle leading-6 font-semibold tracking-[0.5px]">About</h4>
+          <Link href={Route.ABOUT_US} className="text-sm text-[#0e1112] block">
+            About Us
+          </Link>
           <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
             Our Story
           </Link>
-          <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
-            Doug & Susan&apos;s Kids Foundation
-          </Link>
-          <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
+          <Link href={Route.MEET_THE_TEAM} className="text-sm text-[#0e1112] block">
             Meet the Team
-          </Link>
-          <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
-            Blog
           </Link>
         </li>
         <li>
@@ -27,11 +24,14 @@ export default function Footer() {
           <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
             Apply for a Wholesale Account
           </Link>
-          <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
+          <Link href={Route.CAREER} className="text-sm text-[#0e1112] block">
             Careers
           </Link>
-          <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
+          <Link href={Route.CONTACT} className="text-sm text-[#0e1112] block">
             Contact us
+          </Link>
+          <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
+            Blog
           </Link>
         </li>
         <li>
