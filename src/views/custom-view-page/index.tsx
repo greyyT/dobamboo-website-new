@@ -27,7 +27,7 @@ export default async function CustomViewPage({ customView, locale }: ICustomView
   const language = locale.toUpperCase() as Language;
 
   return (
-    <main>
+    <main className="mt-4">
       {customView.items.map(item => {
         const translation = item.translations.find(t => t.locale === language) ?? item.translations[0];
         const data = translation?.data;
