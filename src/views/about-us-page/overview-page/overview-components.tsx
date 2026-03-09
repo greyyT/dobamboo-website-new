@@ -57,13 +57,15 @@ export const OverviewRowSectionContent = ({ children }: { children: string }) =>
 interface IOverviewCardProps {
   icon: ReactNode;
   title: string;
+  description: string;
 }
 
-export const OverviewCard = ({ icon, title }: IOverviewCardProps) => {
+export const OverviewCard = ({ icon, title, description }: IOverviewCardProps) => {
   return (
-    <div className="bg-white py-6 sm:py-8 px-4 w-full rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center gap-3 sm:gap-4">
-      <div className="w-20 sm:w-24 lg:w-28 xl:w-36 flex-shrink-0">{icon}</div>
+    <div className="bg-white py-6 sm:py-8 px-4 w-full h-full rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center gap-3 sm:gap-4">
+      <div className="w-28 sm:w-32 lg:w-36 aspect-[4/3] overflow-hidden rounded-lg flex-shrink-0">{icon}</div>
       <h2 className="text-center text-lg sm:text-xl font-semibold text-gray-800 leading-tight">{title}</h2>
+      <p className="text-center text-sm sm:text-base text-slate-500 leading-6">{description}</p>
     </div>
   );
 };

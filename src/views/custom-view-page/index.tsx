@@ -1,5 +1,6 @@
 import { Language } from '@prisma/client';
 
+import Screen from '@/components/screen';
 import Intl from '@/constants/intl';
 import {
   BackgroundTitleData,
@@ -39,15 +40,6 @@ export default async function CustomViewPage({ customView, locale }: ICustomView
                 data={(data ?? { title: '', subtitle: '', backgroundImage: '' }) as BackgroundTitleData}
               />
             );
-          case CustomLayoutItemType.IMAGE_TEXT_BLOCK:
-            return (
-              <ImageTextBlock
-                key={item.id}
-                data={(data ?? { image: '', text: '', imagePosition: 'left' }) as ImageTextBlockData}
-              />
-            );
-          case CustomLayoutItemType.ICON_TEXT_ROW:
-            return <IconTextRowBlock key={item.id} data={(data ?? { items: [] }) as IconTextRowData} />;
           case CustomLayoutItemType.BOTTOM_IMAGE_TEXT:
             return (
               <BottomImageTextBlock
@@ -55,8 +47,24 @@ export default async function CustomViewPage({ customView, locale }: ICustomView
                 data={(data ?? { image: '', overlayText: '' }) as BottomImageTextData}
               />
             );
+          case CustomLayoutItemType.IMAGE_TEXT_BLOCK:
+            return (
+              <Screen key={item.id} className="py-6 sm:py-8">
+                <ImageTextBlock data={(data ?? { image: '', text: '', imagePosition: 'left' }) as ImageTextBlockData} />
+              </Screen>
+            );
+          case CustomLayoutItemType.ICON_TEXT_ROW:
+            return (
+              <Screen key={item.id} className="py-6 sm:py-8">
+                <IconTextRowBlock data={(data ?? { items: [] }) as IconTextRowData} />
+              </Screen>
+            );
           case CustomLayoutItemType.TEXT_BLOCK:
-            return <TextBlock key={item.id} data={(data ?? { text: '' }) as TextBlockData} />;
+            return (
+              <Screen key={item.id} className="py-6 sm:py-8">
+                <TextBlock data={(data ?? { text: '' }) as TextBlockData} />
+              </Screen>
+            );
           default:
             return null;
         }

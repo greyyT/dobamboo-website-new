@@ -45,7 +45,12 @@ export default function Footer() {
             >
               <Image src="/images/facebook.png" alt="Facebook" width={30} height={30} />
             </Link>
-            <Link href={Route.HOME} className="h-10 block relative">
+            <Link
+              href="https://www.pinterest.com/infothetrevita/"
+              className="h-10 block relative"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image src="/images/pinterest.png" alt="Pinterest" width={30} height={30} />
             </Link>
             <Link

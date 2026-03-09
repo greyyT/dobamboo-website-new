@@ -107,9 +107,11 @@ const ContactSocials: FC = () => {
             />
           </Link>
           <Link
-            href="/"
+            href="https://www.pinterest.com/infothetrevita/"
             className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors group"
             aria-label="Pinterest"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src="/images/pinterest.png"
