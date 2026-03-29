@@ -21,9 +21,6 @@ export default function Footer() {
         </li>
         <li>
           <h4 className="uppercase text-[15px] text-subtitle leading-6 font-semibold tracking-[0.5px]">Contact</h4>
-          <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
-            Apply for a Wholesale Account
-          </Link>
           <Link href={Route.CAREER} className="text-sm text-[#0e1112] block">
             Careers
           </Link>
