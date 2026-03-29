@@ -5,18 +5,22 @@ import 'swiper/css';
 import { View } from '@prisma/client';
 import { ArrowRightIcon } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import React, { FC, useRef } from 'react';
 import { Autoplay } from 'swiper/modules';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
+import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { LandingPageItemData, LandingPageType } from '@/types/landing-page-item-data';
 import { getIntlFormat } from '@/utils/formatter';
 
 interface ILandingPageCarouselProps {
   data: Extract<LandingPageItemData, { type: LandingPageType.CAROUSEL }>;
+}
+
+function stripLocalePrefix(url: string) {
+  return url.replace(/^\/(en|vi)(\/|$)/, '/');
 }
 
 const LandingPageCarousel: FC<ILandingPageCarouselProps> = ({ data }) => {
@@ -55,7 +59,7 @@ const LandingPageCarousel: FC<ILandingPageCarouselProps> = ({ data }) => {
               </p>
               <div className="flex">
                 <Link
-                  href={carouselItem.redirectUrl}
+                  href={stripLocalePrefix(carouselItem.redirectUrl)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-base text-white font-medium flex items-center mt-4 border-b border-solid border-white"

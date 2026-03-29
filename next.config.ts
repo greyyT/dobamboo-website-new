@@ -10,15 +10,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '9s8p8ymf20.ufs.sh',
+        hostname: '**',
       },
       {
-        protocol: 'https',
-        hostname: 'dobamboo-demo.vercel.app',
-      },
-      {
-        protocol: 'https',
-        hostname: 'utfs.io',
+        protocol: 'http',
+        hostname: '**',
       },
     ],
   },

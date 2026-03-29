@@ -1,5 +1,12 @@
+import Intl from '@/constants/intl';
 import BlogListPage from '@/views/blog-list-page';
 
-export default function Page() {
-  return <BlogListPage />;
+interface IBlogPageProps {
+  params: Promise<{ locale: Intl }>;
+}
+
+export default async function Page({ params }: IBlogPageProps) {
+  const { locale } = await params;
+
+  return <BlogListPage locale={locale} />;
 }

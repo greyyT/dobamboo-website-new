@@ -3,13 +3,19 @@ import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 import { ApiKey } from '@/configs/api-key';
 import { Notion } from '@/configs/notion';
+import Intl from '@/constants/intl';
 import { BlogResponse } from '@/types/blog';
 
 export const notionClient = new Client({
   auth: ApiKey.NOTION_API_KEY,
 });
 
-export async function getBlogPosts() {
+const LOCALE_TO_NOTION_LANGUAGE: Record<Intl, string> = {
+  [Intl.EN]: 'EN',
+  [Intl.VI]: 'VI',
+};
+
+export async function getBlogPosts(locale?: Intl) {
   'use cache';
 
   const data = await notionClient.databases.query({
@@ -24,9 +30,17 @@ export async function getBlogPosts() {
 
   const blogPosts = data.results as BlogResponse[];
 
-  const sortedBlogPosts = blogPosts.sort((a, b) => {
-    const dateA = new Date(a.properties.Date.date.start as string);
-    const dateB = new Date(b.properties.Date.date.start as string);
+  const filtered = locale
+    ? blogPosts.filter(post => {
+        const lang = post.properties.Language?.select?.name?.toUpperCase();
+        if (!lang) return true;
+        return lang === LOCALE_TO_NOTION_LANGUAGE[locale];
+      })
+    : blogPosts;
+
+  const sortedBlogPosts = filtered.sort((a, b) => {
+    const dateA = new Date(a.properties.Date?.date?.start ?? 0);
+    const dateB = new Date(b.properties.Date?.date?.start ?? 0);
 
     if (dateA > dateB) return -1;
     if (dateA < dateB) return 1;

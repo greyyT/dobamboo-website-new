@@ -1,3 +1,4 @@
+import { LOCALES } from '@/constants/intl';
 import { getBlogBySlug, getBlogPosts } from '@/services/notion';
 import BlogDetailPage from '@/views/blog-detail-page';
 
@@ -15,9 +16,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export async function generateStaticParams() {
   const { data } = await getBlogPosts();
 
-  return data.map(post => ({
-    slug: post?.properties?.Slug?.rich_text[0]?.plain_text,
-  }));
+  return LOCALES.flatMap(locale =>
+    data.map(post => ({
+      locale,
+      slug: post?.properties?.Slug?.rich_text[0]?.plain_text,
+    })),
+  );
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Separator } from '@/components/ui/separator';
 import { Link } from '@/i18n/navigation';
 import { BlogResponse } from '@/types/blog';
+import { getCoverImageUrl } from '@/utils/formatter';
 
 interface ILandingPageLatestNewsSwiperProps {
   blogs: BlogResponse[];
@@ -47,12 +48,14 @@ export default function LandingPageLatestNewsSwiper({ blogs }: ILandingPageLates
           <SwiperSlide key={idx} className="w-full">
             <Link key={blog.id} href={`/blog/${blog.properties.Slug.rich_text[0].plain_text}`} className="relative">
               <div className="w-full h-40 relative">
-                <Image
-                  src={blog.properties.CoverImage.url as string}
-                  alt={blog.properties.Slug.rich_text[0].text.content}
-                  fill
-                  objectFit="cover"
-                />
+                {getCoverImageUrl(blog.properties.CoverImage) && (
+                  <Image
+                    src={getCoverImageUrl(blog.properties.CoverImage) as string}
+                    alt={blog.properties.Slug.rich_text[0].text.content}
+                    fill
+                    objectFit="cover"
+                  />
+                )}
               </div>
               <h3 className="text-title uppercase mt-2.5 text-base font-semibold leading-5 text-center line-clamp-2">
                 {blog.properties.Title.title[0].plain_text}

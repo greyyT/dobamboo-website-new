@@ -1,15 +1,17 @@
 import React, { ReactNode } from 'react';
 
+import Intl from '@/constants/intl';
 import { getBlogPosts } from '@/services/notion';
 
 import BlogSidebar from './blog-sidebar';
 
 interface IBlogLayoutProps {
   children: ReactNode;
+  locale: Intl;
 }
 
-const BlogLayout = async ({ children }: IBlogLayoutProps) => {
-  const { data: blogs } = await getBlogPosts();
+const BlogLayout = async ({ children, locale }: IBlogLayoutProps) => {
+  const { data: blogs } = await getBlogPosts(locale);
 
   return (
     <main className="flex justify-center mt-5 lg:mt-11 px-4">

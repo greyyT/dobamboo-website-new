@@ -1,111 +1,66 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
 import Screen from '@/components/screen';
 import { AboutUsSearchParams, AboutUsTabKey } from '@/constants/query-params';
 import { cn } from '@/lib/utils';
 
+const CONTENT = {
+  vi: {
+    title: 'THE TRE VITA STORY',
+    paragraphs: [
+      'Tre Vita bắt đầu từ một câu hỏi rất giản dị, nhưng day dứt: vì sao một nghề đã tồn tại hàng trăm năm, có tay nghề cao và giá trị thẩm mỹ rõ ràng như mây tre đan, lại thường chỉ dừng ở quy mô nhỏ lẻ, thiếu sự ổn định và khó đi xa trong đời sống hiện đại?',
+      'Chúng tôi lớn lên trong môi trường mà mây tre đan không phải là một "sản phẩm", mà là một phần của đời sống thường ngày. Nghề không được học qua sách vở hay trường lớp, mà hình thành từ việc quan sát cha ông làm nghề, từ những lần cầm tre, vót mây, làm đi làm lại một động tác cho đến khi đôi tay tự ghi nhớ. Qua thời gian, người thợ không chỉ làm quen với kỹ thuật, mà còn hiểu vật liệu, hiểu lực tay và hiểu giới hạn của chính mình.',
+      'Chính từ nền tảng đó, sự sáng tạo của nghề mây tre đan được hình thành. Đó không phải là sự sáng tạo ngẫu hứng, mà là sáng tạo dựa trên tay nghề, kinh nghiệm và sự am hiểu sâu sắc về vật liệu. Với nghề này, làm cho đúng, cho chắc và cho bền không đối lập với sáng tạo. Ngược lại, đó là điều kiện để sáng tạo có thể đứng vững, được lặp lại và phát triển theo thời gian, thay vì chỉ tồn tại như những thử nghiệm rời rạc.',
+      'Tuy nhiên, khi bước ra khỏi phạm vi làng nghề và tiếp cận thị trường rộng hơn, chúng tôi nhận thấy một khoảng trống rất rõ ràng. Nghề có, tay nghề có, nhưng cách tổ chức còn thiếu nhất quán. Nhiều sản phẩm đẹp, nhưng khó lặp lại. Nhiều ý tưởng hay, nhưng không có nền tảng để phát triển thành dòng sản phẩm ổn định. Chính sự thiếu hụt này khiến nghề mây tre đan gặp khó khăn khi làm việc lâu dài với thị trường, đặc biệt là trong bối cảnh sản xuất và xuất khẩu.',
+      'Tre Vita ra đời từ chính khoảng trống đó.',
+      'Chúng tôi không mong muốn thay đổi bản chất của nghề, cũng không tìm cách "hiện đại hóa" bằng những can thiệp vội vàng. Điều Tre Vita lựa chọn là giữ lại cốt lõi của thủ công – đôi tay người thợ, vật liệu tự nhiên và kinh nghiệm truyền đời – nhưng đặt chúng trong một cách làm rõ ràng và có định hướng hơn.',
+      'Ở giai đoạn đầu, Tre Vita tập trung tiêu chuẩn hóa những gì đã có: cấu trúc sản phẩm, tỷ lệ, cách hoàn thiện và chất lượng đầu ra. Đây là bước cần thiết để sản phẩm có thể được sản xuất ổn định, sử dụng lâu dài và làm việc được với thị trường một cách nghiêm túc. Tiêu chuẩn, trong trường hợp này, không nhằm giới hạn nghề, mà để tạo ra một mặt bằng chung đủ vững cho sự phát triển tiếp theo.',
+      'Khi nền tảng này đủ chắc, Tre Vita không dừng lại ở việc lặp lại những thiết kế quen thuộc. Mục tiêu dài hạn của chúng tôi là từng bước tiêu chuẩn hóa chính quá trình sáng tạo. Những ý tưởng mới không chỉ dừng ở cảm hứng cá nhân, mà được thử nghiệm, hoàn thiện và phát triển thành sản phẩm một cách có hệ thống. Sáng tạo, khi đó, không bị bó hẹp, mà được nuôi dưỡng để có thể đi xa và tồn tại lâu dài trong thực tế sản xuất.',
+      'Tre Vita không được xây dựng như một xưởng gia công thuần túy, cũng không phải một thương hiệu chỉ kể câu chuyện cho đẹp. Chúng tôi xem mỗi sản phẩm là một phần trong quá trình làm nghề dài hạn: làm – rút kinh nghiệm – điều chỉnh – rồi làm tốt hơn ở lần sau. Những gì chưa làm được ở hiện tại, Tre Vita không né tránh, mà đặt vào một lộ trình phát triển phù hợp với quy mô và nguồn lực thực tế.',
+      'Chúng tôi tin rằng nghề thủ công không mai một vì thiếu sáng tạo, mà vì thiếu một cách làm đủ nghiêm túc để sáng tạo có thể được tiếp nối. Tre Vita chọn đi chậm, nhưng đi chắc. Không chạy theo số lượng, không phô trương thành tựu, mà tập trung xây dựng nền tảng để nghề mây tre đan có thể tiếp tục sống, tiếp tục được sử dụng và tiếp tục được trân trọng trong đời sống hiện đại.',
+      'The Tre Vita Story không phải là câu chuyện về việc tạo ra điều gì đó hoàn toàn mới, mà là hành trình tổ chức lại một nghề đã tồn tại rất lâu — để sự sáng tạo vốn có của nghề có thể được phát huy một cách bền vững, có hệ thống và đi được đường dài.',
+    ],
+  },
+  en: {
+    title: 'THE TRE VITA STORY',
+    paragraphs: [
+      'Tre Vita began with a simple but persistent question: why does a craft that has existed for hundreds of years—rich in skill, material knowledge, and aesthetic value like bamboo and rattan weaving—often remain small-scale, inconsistent, and difficult to sustain in modern life?',
+      'We grew up in an environment where bamboo and rattan were not "products," but part of everyday living. The craft was never learned from books or classrooms. It was formed through observation—watching older generations work—through handling bamboo, splitting rattan, and repeating the same movements until the hands remembered on their own. Over time, the artisan learns not only technique, but also material behavior, hand pressure, and the limits of both the material and oneself.',
+      'From this foundation, creativity naturally emerges. In bamboo and rattan craft, creativity is not spontaneous or decorative—it is grounded in skill, experience, and a deep understanding of the material. Making something "right," "strong," and "lasting" does not stand in opposition to creativity. On the contrary, it is what allows creative ideas to endure, to be repeated, and to evolve beyond isolated experiments.',
+      'However, when stepping beyond the craft village and into broader markets, a clear gap becomes apparent. The skills exist, but the way of working is often fragmented. Many products are beautiful, yet difficult to reproduce consistently. Many ideas are promising, yet lack the structure needed to grow into reliable product lines. This gap is what limits traditional craft when working long-term with modern markets, especially in production and export contexts.',
+      'Tre Vita was formed within this gap.',
+      'We do not seek to change the nature of the craft, nor to modernize it through rushed intervention. What Tre Vita chooses is to preserve the core of craftsmanship—human hands, natural materials, and inherited knowledge—while placing it within a clearer, more deliberate way of working.',
+      'In its early stage, Tre Vita focuses on standardizing what already exists: product structures, proportions, finishing levels, and quality outcomes. This step is essential for achieving consistency, long-term usability, and reliable collaboration with the market. Here, standards are not meant to restrict the craft, but to establish a stable foundation on which it can grow.',
+      'As this foundation becomes solid, Tre Vita does not stop at repeating familiar designs. Our long-term goal is to gradually systematize the creative process itself—so new ideas can be developed, tested, refined, and brought into production in a structured way, rather than remaining as one-off expressions. In this context, creativity is not limited; it is supported and sustained.',
+      'Tre Vita is not built as a pure manufacturing workshop, nor as a brand driven by storytelling alone. Each product is treated as part of a long-term learning process: making, reflecting, adjusting, and improving over time. What cannot yet be achieved is not ignored, but placed within a realistic development path aligned with available resources and scale.',
+      'We believe traditional craft does not fade because it lacks creativity, but because creativity is not supported by a serious enough way of working. Tre Vita chooses to move slowly, but with intention. We do not pursue volume or quick recognition. Instead, we focus on building a foundation strong enough for bamboo and rattan craftsmanship to continue living—used, valued, and respected—in contemporary life.',
+      'The Tre Vita Story is not about inventing something entirely new, but about reorganizing a craft that has existed for generations—so its inherent creativity can be carried forward in a sustainable, structured, and lasting way.',
+    ],
+  },
+};
+
 const OurStoryPage = () => {
   const searchParams = useSearchParams();
+  const locale = useLocale();
   const isActive = searchParams.get(AboutUsSearchParams.Tab) === AboutUsTabKey.OurStory;
+  const content = CONTENT[locale as keyof typeof CONTENT] ?? CONTENT.en;
 
   return (
     <div className={cn(!isActive && 'hidden')}>
       <Screen>
         <div className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-          {/* Header */}
           <div className="text-center mb-8 sm:mb-12">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800">THE TREVITA STORY</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800">{content.title}</h1>
           </div>
-
-          {/* Content */}
-          <div className="prose prose-sm sm:prose-base lg:prose-lg mx-auto max-w-none">
-            <p className="text-sm sm:text-base text-zinc-600 leading-6 sm:leading-7 mb-6 sm:mb-8 text-center lg:text-left">
-              It was a beautiful sun-drenched day in the colorful market square of Ocho Rios, Jamaica when fate was
-              about to tap Doug and Susan Williams on the shoulder. The year was 1984, and the young couple had taken
-              one of those "Five days for $500… come back to Jamaica" trips with their best friends Andy and Debbie.
-              That typical sunny day found Debbie and Susan shopping for souvenirs while the boys drank Red Stripe under
-              a palm tree.
-            </p>
-
-            {/* Video Section */}
-            <div className="my-8 sm:my-12 lg:my-16">
-              <div className="relative w-full max-w-4xl mx-auto">
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full rounded-lg shadow-lg"
-                    src="https://www.youtube.com/embed/n2tkgeFcMhc?si=RIRdi7Sv1vcECfxI"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-
-            <p className="text-sm sm:text-base text-zinc-800 mb-4 sm:mb-6 leading-6 sm:leading-7">
-              It was that fateful moment when Susan held up a basket and yelled back to Doug, "I paid $40 for a basket
-              just like this back home." Doug yelled back, "How much are you paying for that one?" When Susan said two
-              dollars, legend has it that you could see the dollar signs ringing up in Doug's eyes$$$$$$$$$$$$$.
-            </p>
-
-            <p className="text-sm sm:text-base text-zinc-800 mb-4 sm:mb-6 leading-6 sm:leading-7">
-              Susan and Doug were doing flea markets back home selling their artwork painted on old barn wood to make
-              ends meet as a young married couple. And, both thought that the baskets would make a great addition to
-              their flea market endeavors. So, Andy and Debbie, being best friends and all, helped the Williams carry as
-              many baskets as possible on the plane home… and what a sight they were… back in the day when you could do
-              stuff like that on an airplane.
-            </p>
-
-            <p className="text-sm sm:text-base text-zinc-800 mb-4 sm:mb-6 leading-6 sm:leading-7">
-              Back home, Doug just couldn't get the 2000% mark up out of his head. So, he posed the idea to Susan of
-              returning to Jamaica to try and import the baskets back to Mississippi. Now Doug and Susan knew next to
-              nothing about importing, so they learned. Well, Doug did… because the couple didn't have enough money for
-              both to make the return trip to Jamaica. As the story goes, it was Doug who convinced the Jamaican Trade
-              Council to ship a container load of baskets to Jackson, Mississippi with no money down and 30 days to pay.
-              That was miracle number one of many miracles to follow in the life of a true entrepreneurial company.
-            </p>
-
-            <p className="text-sm sm:text-base text-zinc-800 mb-6 sm:mb-8 leading-6 sm:leading-7">
-              Nothing in their life would ever be the same after that first container pulled into their driveway. They
-              unloaded the whole container themselves into their garage, and three flea market weekends later the whole
-              container load of baskets was sold. The bill was paid and another container was ordered. The flea market
-              business continued like that for two years, until one day a flea market shopper, who was buying up baskets
-              for her retail shop, said "You guys should try and sell these at the Dallas Wholesale Show."
-            </p>
-
-            {/* Image Gallery */}
-            <div className="my-8 sm:my-12 lg:my-16">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
-                <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
-                  <img
-                    src="https://dobamboo-demo.vercel.app/images/section1-1.jpg"
-                    alt="Company History Image 1"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
-                  <img
-                    src="https://dobamboo-demo.vercel.app/images/section1-4.jpg"
-                    alt="Company History Image 2"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <p className="text-sm sm:text-base text-zinc-800 leading-6 sm:leading-7">
-              So, Doug and Susan set their sights for the Dallas Wholesale Show; but along with the regular Jamaican
-              baskets, Susan had stumbled upon an idea that would become a turning point for the now full fledged
-              wholesale company named Country Originals. It would be a brand new introduction that came to Susan one
-              day. While studying the unique rounded shape of the Jamaican baskets… Susan saw a watermelon. She sent the
-              design to Jamaica along with kegs of Rit Dye and the famous watermelon basket was born. Some of you, who
-              have been in business long enough, may remember the long line to get into their booth. The watermelon
-              basket and the newly named Country Originals Company were the hit of the Dallas Wholesale Show… the month
-              was July, the year was 1986.
-            </p>
+          <div className="prose prose-sm sm:prose-base lg:prose-lg mx-auto max-w-none space-y-4 sm:space-y-6">
+            {content.paragraphs.map((p, i) => (
+              <p key={i} className="text-sm sm:text-base text-zinc-800 leading-6 sm:leading-7">
+                {p}
+              </p>
+            ))}
           </div>
         </div>
       </Screen>

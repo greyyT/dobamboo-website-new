@@ -56,7 +56,12 @@ export type BlogResponse = PageObjectResponse & {
     CoverImage: {
       id: string;
       type: BlogPropertyType;
-      url: string | null;
+      files: {
+        name: string;
+        type: 'file' | 'external';
+        file?: { url: string; expiry_time: string };
+        external?: { url: string };
+      }[];
     };
     Title: {
       id: string;
@@ -100,5 +105,10 @@ export type BlogResponse = PageObjectResponse & {
         href: string | null;
       }[];
     };
+    Language: {
+      id: string;
+      type: BlogPropertyType;
+      select: { id: string; name: string; color: string } | null;
+    } | null;
   };
 };

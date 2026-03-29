@@ -1,10 +1,16 @@
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
 
+import Image from 'next/image';
+
+import { Link } from '@/i18n/navigation';
 import { LandingPageItemData, LandingPageType } from '@/types/landing-page-item-data';
 
 interface ILandingPageNavigationProps {
   data: Extract<LandingPageItemData, { type: LandingPageType.NAVIGATION }>;
+}
+
+function stripLocalePrefix(url: string) {
+  return url.replace(/^\/(en|vi)(\/|$)/, '/');
 }
 
 export default function LandingPageNavigation({ data }: ILandingPageNavigationProps) {
@@ -16,7 +22,7 @@ export default function LandingPageNavigation({ data }: ILandingPageNavigationPr
       <div className="flex flex-col gap-4 sm:hidden">
         {navigations.map((item, idx) => (
           <Link
-            href={item.redirectUrl}
+            href={stripLocalePrefix(item.redirectUrl)}
             key={idx}
             className="relative w-full h-48 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
@@ -38,7 +44,7 @@ export default function LandingPageNavigation({ data }: ILandingPageNavigationPr
           <div className="flex gap-4 w-full">
             {navigations.map((item, idx) => (
               <Link
-                href={item.redirectUrl}
+                href={stripLocalePrefix(item.redirectUrl)}
                 key={idx}
                 className="relative flex-1 h-56 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
@@ -57,7 +63,7 @@ export default function LandingPageNavigation({ data }: ILandingPageNavigationPr
           <div className="grid grid-cols-2 gap-4 w-full">
             {navigations.map((item, idx) => (
               <Link
-                href={item.redirectUrl}
+                href={stripLocalePrefix(item.redirectUrl)}
                 key={idx}
                 className={`relative h-56 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 ${
                   navigations.length % 2 !== 0 && idx === navigations.length - 1 ? 'col-span-2' : ''
@@ -80,7 +86,7 @@ export default function LandingPageNavigation({ data }: ILandingPageNavigationPr
       <div className="hidden lg:flex gap-6 xl:gap-8">
         {navigations.map((item, idx) => (
           <Link
-            href={item.redirectUrl}
+            href={stripLocalePrefix(item.redirectUrl)}
             key={idx}
             className="relative flex-1 h-64 xl:h-72 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
           >

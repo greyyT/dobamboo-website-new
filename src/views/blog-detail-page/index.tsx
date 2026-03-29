@@ -6,7 +6,7 @@ import React from 'react';
 
 import { getPageContent, notionClient } from '@/services/notion';
 import { BlogResponse } from '@/types/blog';
-import { formatDateToOrdinal } from '@/utils/formatter';
+import { formatDateToOrdinal, getCoverImageUrl } from '@/utils/formatter';
 
 import { NavigationBreadcrumb } from './navigation-breadcrumb';
 
@@ -30,14 +30,16 @@ const BlogDetailPage = async ({ blog, slug }: IBlogDetailPageProps) => {
 
   const title = blog?.properties?.Title?.title[0]?.plain_text;
   const date = blog?.properties?.Date?.date.start as string;
-  const bannerImage = blog?.properties?.CoverImage?.url as string;
+  const bannerImage = getCoverImageUrl(blog?.properties?.CoverImage);
 
   return (
     <article className="flex-1 md:pr-20">
       <NavigationBreadcrumb name={title} slug={slug} />
       <h1 className="text-5xl font-black text-paragraph pt-6">{title}</h1>
       <p className="text-sm mt-4 text-title">{formatDateToOrdinal(new Date(date))}</p>
-      <Image src={bannerImage} alt={title} sizes="100vw" width={1200} height={0} className="h-auto mt-8" />
+      {bannerImage && (
+        <Image src={bannerImage} alt={title} sizes="100vw" width={1200} height={0} className="h-auto mt-8" />
+      )}
       <div
         className="blog mt-4 leading-6 text-base space-y-3 text-paragraph"
         dangerouslySetInnerHTML={{ __html: html }}
