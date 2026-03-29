@@ -1,11 +1,14 @@
+import { getLocale } from 'next-intl/server';
 import React from 'react';
 
+import Intl from '@/constants/intl';
 import { getBlogPosts } from '@/services/notion';
 
 import LandingPageLatestNewsSwiper from './landing-page-latest-news-swiper';
 
 const LandingPageLatestNews = async () => {
-  const { data: blogs } = await getBlogPosts();
+  const locale = await getLocale();
+  const { data: blogs } = await getBlogPosts(locale as Intl);
 
   return (
     <section className="mt-6 md:mt-12">
