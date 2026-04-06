@@ -19,8 +19,15 @@ interface ILandingPageCarouselProps {
   data: Extract<LandingPageItemData, { type: LandingPageType.CAROUSEL }>;
 }
 
-function stripLocalePrefix(url: string) {
-  return url.replace(/^\/(en|vi)(\/|$)/, '/');
+const internalPageRegex = /^\/page(\/|$)/;
+
+function parseRedirectUrl(url: string) {
+  const isInternal = internalPageRegex.test(url);
+
+  return {
+    href: isInternal ? url.replace(internalPageRegex, '/') : url,
+    isExternal: !isInternal,
+  };
 }
 
 const LandingPageCarousel: FC<ILandingPageCarouselProps> = ({ data }) => {
@@ -45,33 +52,37 @@ const LandingPageCarousel: FC<ILandingPageCarouselProps> = ({ data }) => {
       }}
       className="h-140 w-full relative"
     >
-      {data.data.map((carouselItem, idx) => (
-        <SwiperSlide key={idx} className="w-full">
-          <div className="w-full h-full relative">
-            <Image src={carouselItem.imageUrl} alt="Image src" fill objectFit="cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-50% to-black/60 backdrop-blur-[2px]" />
-            <div className="absolute bottom-8 left-8 z-10">
-              <h1 className="font-inter font-bold text-6xl text-slate-100">
-                {t(getIntlFormat(data.id, `${idx}`, 'title'))}
-              </h1>
-              <p className="font-inter text-sm text-slate-200 mt-2 max-w-140">
-                {t(getIntlFormat(data.id, `${idx}`, 'description'))}
-              </p>
-              <div className="flex">
-                <Link
-                  href={stripLocalePrefix(carouselItem.redirectUrl)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-base text-white font-medium flex items-center mt-4 border-b border-solid border-white"
-                >
-                  {t(getIntlFormat(data.id, `${idx}`, 'redirectText')) ?? 'Buy now'}
-                  <ArrowRightIcon size={14} className="ml-0.5 -rotate-45 " />
-                </Link>
+      {data.data.map((carouselItem, idx) => {
+        const { href, isExternal } = parseRedirectUrl(carouselItem.redirectUrl);
+
+        return (
+          <SwiperSlide key={idx} className="w-full">
+            <div className="w-full h-full relative">
+              <Image src={carouselItem.imageUrl} alt="Image src" fill objectFit="cover" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent from-50% to-black/60 backdrop-blur-[2px]" />
+              <div className="absolute bottom-8 left-8 z-10">
+                <h1 className="font-inter font-bold text-6xl text-slate-100">
+                  {t(getIntlFormat(data.id, `${idx}`, 'title'))}
+                </h1>
+                <p className="font-inter text-sm text-slate-200 mt-2 max-w-140">
+                  {t(getIntlFormat(data.id, `${idx}`, 'description'))}
+                </p>
+                <div className="flex">
+                  <Link
+                    href={href}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    className="text-base text-white font-medium flex items-center mt-4 border-b border-solid border-white"
+                  >
+                    {t(getIntlFormat(data.id, `${idx}`, 'redirectText')) ?? 'Buy now'}
+                    <ArrowRightIcon size={14} className="ml-0.5 -rotate-45 " />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        </SwiperSlide>
-      ))}
+          </SwiperSlide>
+        );
+      })}
       <div className="absolute bottom-2 left-0 right-0 flex h-4 justify-center z-50">
         {data.data.length > 1 && (
           <div className="flex items-center space-x-2">

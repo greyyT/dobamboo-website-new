@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { Link } from '@/i18n/navigation';
 
 import { Route } from '@/constants/route';
+import { Link } from '@/i18n/navigation';
 
 export default function Footer() {
   return (
@@ -27,7 +27,7 @@ export default function Footer() {
           <Link href={Route.CONTACT} className="text-sm text-[#0e1112] block">
             Contact us
           </Link>
-          <Link href={Route.OUR_STORY} className="text-sm text-[#0e1112] block">
+          <Link href={Route.BLOG} className="text-sm text-[#0e1112] block">
             Blog
           </Link>
         </li>
