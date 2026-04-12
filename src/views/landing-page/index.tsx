@@ -1,4 +1,5 @@
 import { getAllLandingPageItems } from '@/services/landing-page/get-all-landing-page-items';
+import { getLocale } from 'next-intl/server';
 
 import LandingPageBrowseCategory from './landing-page-item/landing-page-browse-category/landing-page-browse-category';
 import LandingPageBrowseProducts from './landing-page-item/landing-page-browse-products/landing-page-browse-products';
@@ -7,7 +8,8 @@ import LandingPageLatestNews from './landing-page-item/landing-page-latest-news/
 import LandingPageRecentProducts from './landing-page-item/landing-page-recent-products/landing-page-recent-products';
 
 const LandingPageView = async () => {
-  const landingPageItems = await getAllLandingPageItems();
+  const locale = await getLocale();
+  const landingPageItems = await getAllLandingPageItems(locale);
 
   return (
     <main className="flex justify-center mt-2 lg:mt-4 px-4">

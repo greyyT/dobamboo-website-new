@@ -19,14 +19,29 @@ interface ILandingPageCarouselProps {
   data: Extract<LandingPageItemData, { type: LandingPageType.CAROUSEL }>;
 }
 
-const internalPageRegex = /^\/page(\/|$)/;
+const internalPageRegex = /^\/page(\/|$)/i;
+const localePrefixRegex = /^\/(en|vi)(\/|$)/i;
 
-function parseRedirectUrl(url: string) {
-  const isInternal = internalPageRegex.test(url);
+function normalizeInternalHref(url: string) {
+  const trimmed = url.trim();
+  let href = trimmed.replace(localePrefixRegex, '/').replace(internalPageRegex, '/');
+
+  if (!href.startsWith('/')) href = `/${href}`;
+  return href;
+}
+
+function parseRedirectUrl(url: string, useInternalLink?: boolean) {
+  const trimmed = (url ?? '').trim();
+  const isAbsoluteHttpUrl = /^https?:\/\//i.test(trimmed);
+  const looksLikeInternalPath = trimmed.startsWith('/') && !trimmed.startsWith('//');
+  const isLegacyInternal = internalPageRegex.test(trimmed);
+
+  const isInternal =
+    useInternalLink === true ? true : looksLikeInternalPath || isLegacyInternal;
 
   return {
-    href: isInternal ? url.replace(internalPageRegex, '/') : url,
-    isExternal: !isInternal,
+    href: isInternal ? normalizeInternalHref(trimmed) : trimmed,
+    isExternal: !isInternal && isAbsoluteHttpUrl,
   };
 }
 
@@ -53,12 +68,16 @@ const LandingPageCarousel: FC<ILandingPageCarouselProps> = ({ data }) => {
       className="h-140 w-full relative"
     >
       {data.data.map((carouselItem, idx) => {
-        const { href, isExternal } = parseRedirectUrl(carouselItem.redirectUrl);
+        const { href, isExternal } = parseRedirectUrl(carouselItem.redirectUrl, carouselItem.useInternalLink);
 
         return (
           <SwiperSlide key={idx} className="w-full">
             <div className="w-full h-full relative">
-              <Image src={carouselItem.imageUrl} alt="Image src" fill objectFit="cover" />
+              {carouselItem.imageUrl ? (
+                <Image src={carouselItem.imageUrl} alt="Image src" fill objectFit="cover" />
+              ) : (
+                <div className="absolute inset-0 bg-zinc-200" />
+              )}
               <div className="absolute inset-0 bg-gradient-to-b from-transparent from-50% to-black/60 backdrop-blur-[2px]" />
               <div className="absolute bottom-8 left-8 z-10">
                 <h1 className="font-inter font-bold text-6xl text-slate-100">

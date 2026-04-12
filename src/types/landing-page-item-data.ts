@@ -14,6 +14,7 @@ type BaseLandingPageItemData = {
 type CarouselItem = {
   imageUrl: string;
   redirectUrl: string;
+  useInternalLink?: boolean;
 };
 
 export type LandingPageItemData = BaseLandingPageItemData &
