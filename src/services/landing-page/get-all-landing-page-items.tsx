@@ -1,6 +1,6 @@
-import db from '@/lib/db';
 import { Language, View } from '@prisma/client';
 
+import db from '@/lib/db';
 import { LandingPageItemData, LandingPageType } from '@/types/landing-page-item-data';
 
 function isRecord(value: unknown): value is Record<string, unknown> {

@@ -36,8 +36,7 @@ function parseRedirectUrl(url: string, useInternalLink?: boolean) {
   const looksLikeInternalPath = trimmed.startsWith('/') && !trimmed.startsWith('//');
   const isLegacyInternal = internalPageRegex.test(trimmed);
 
-  const isInternal =
-    useInternalLink === true ? true : looksLikeInternalPath || isLegacyInternal;
+  const isInternal = useInternalLink === true ? true : looksLikeInternalPath || isLegacyInternal;
 
   return {
     href: isInternal ? normalizeInternalHref(trimmed) : trimmed,

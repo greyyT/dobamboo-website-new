@@ -27,8 +27,7 @@ function parseRedirectUrl(url: string, useInternalLink?: boolean) {
   const looksLikeInternalPath = trimmed.startsWith('/') && !trimmed.startsWith('//');
   const isLegacyInternal = internalPageRegex.test(trimmed);
 
-  const isInternal =
-    useInternalLink === true ? true : looksLikeInternalPath || isLegacyInternal;
+  const isInternal = useInternalLink === true ? true : looksLikeInternalPath || isLegacyInternal;
 
   return {
     href: isInternal ? normalizeInternalHref(trimmed) : trimmed,
@@ -64,7 +63,7 @@ function NavigationLink({
 
 export default function LandingPageNavigation({ data }: ILandingPageNavigationProps) {
   const navigations = (data.data ?? []).filter(
-    (item) => Boolean(item?.imageUrl?.trim()) && Boolean(item?.redirectUrl?.trim()),
+    item => Boolean(item?.imageUrl?.trim()) && Boolean(item?.redirectUrl?.trim()),
   );
 
   if (!navigations.length) {
@@ -85,13 +84,13 @@ export default function LandingPageNavigation({ data }: ILandingPageNavigationPr
               key={idx}
               className="relative w-full h-48 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-            <Image
-              src={item.imageUrl}
-              alt={`Navigation ${idx + 1}`}
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-300"
-              sizes="(max-width: 640px) 100vw"
-            />
+              <Image
+                src={item.imageUrl}
+                alt={`Navigation ${idx + 1}`}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 100vw"
+              />
             </NavigationLink>
           );
         })}
@@ -112,13 +111,13 @@ export default function LandingPageNavigation({ data }: ILandingPageNavigationPr
                   key={idx}
                   className="relative flex-1 h-56 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
-                <Image
-                  src={item.imageUrl}
-                  alt={`Navigation ${idx + 1}`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                  sizes="(min-width: 640px) 50vw"
-                />
+                  <Image
+                    src={item.imageUrl}
+                    alt={`Navigation ${idx + 1}`}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                    sizes="(min-width: 640px) 50vw"
+                  />
                 </NavigationLink>
               );
             })}
@@ -138,13 +137,13 @@ export default function LandingPageNavigation({ data }: ILandingPageNavigationPr
                     navigations.length % 2 !== 0 && idx === navigations.length - 1 ? 'col-span-2' : ''
                   }`}
                 >
-                <Image
-                  src={item.imageUrl}
-                  alt={`Navigation ${idx + 1}`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                  sizes="(min-width: 640px) 50vw"
-                />
+                  <Image
+                    src={item.imageUrl}
+                    alt={`Navigation ${idx + 1}`}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                    sizes="(min-width: 640px) 50vw"
+                  />
                 </NavigationLink>
               );
             })}
@@ -164,15 +163,15 @@ export default function LandingPageNavigation({ data }: ILandingPageNavigationPr
               key={idx}
               className="relative flex-1 h-64 xl:h-72 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
             >
-            <Image
-              src={item.imageUrl}
-              alt={`Navigation ${idx + 1}`}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
-              sizes="(min-width: 1024px) 33vw"
-            />
-            {/* Optional: Add overlay for better text readability if needed */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+              <Image
+                src={item.imageUrl}
+                alt={`Navigation ${idx + 1}`}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(min-width: 1024px) 33vw"
+              />
+              {/* Optional: Add overlay for better text readability if needed */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </NavigationLink>
           );
         })}

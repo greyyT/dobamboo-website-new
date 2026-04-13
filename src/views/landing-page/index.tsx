@@ -1,5 +1,6 @@
-import { getAllLandingPageItems } from '@/services/landing-page/get-all-landing-page-items';
 import { getLocale } from 'next-intl/server';
+
+import { getAllLandingPageItems } from '@/services/landing-page/get-all-landing-page-items';
 
 import LandingPageBrowseCategory from './landing-page-item/landing-page-browse-category/landing-page-browse-category';
 import LandingPageBrowseProducts from './landing-page-item/landing-page-browse-products/landing-page-browse-products';
