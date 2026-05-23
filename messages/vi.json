@@ -9,6 +9,21 @@
     },
     "product": {
       "noProducts": "Không tìm thấy sản phẩm."
+    },
+    "footer": {
+      "aboutSection": "Giới thiệu",
+      "aboutUs": "Về chúng tôi",
+      "ourStory": "Câu chuyện của chúng tôi",
+      "meetTheTeam": "Gặp gỡ đội ngũ",
+      "contactSection": "Liên hệ",
+      "careers": "Tuyển dụng",
+      "contactUs": "Liên hệ chúng tôi",
+      "blog": "Blog",
+      "followUsOn": "Theo dõi chúng tôi",
+      "facebook": "Facebook",
+      "pinterest": "Pinterest",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
     }
   }
 }

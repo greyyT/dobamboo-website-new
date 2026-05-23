@@ -9,6 +9,21 @@
     },
     "product": {
       "noProducts": "No products found"
+    },
+    "footer": {
+      "aboutSection": "About",
+      "aboutUs": "About Us",
+      "ourStory": "Our Story",
+      "meetTheTeam": "Meet the Team",
+      "contactSection": "Contact",
+      "careers": "Careers",
+      "contactUs": "Contact us",
+      "blog": "Blog",
+      "followUsOn": "Follow us on",
+      "facebook": "Facebook",
+      "pinterest": "Pinterest",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
     }
   }
 }
